@@ -1,18 +1,23 @@
 package Principal;
 
+import ModuloDiaHora.ConsultarVehiculo;
 import ModuloDiaHora.IngresarVehiculo;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
-
+    
+    
     
     public Menu() {
         initComponents();
         initAlternComponents();
-        
+        //setIconImage(getIconImage());
     }
 
  
@@ -100,6 +105,11 @@ public class Menu extends javax.swing.JFrame {
         btnConsultarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnConsultarVehiculo.setForeground(new java.awt.Color(0, 0, 0));
         btnConsultarVehiculo.setText("Consultar Vehiculos");
+        btnConsultarVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarVehiculoActionPerformed(evt);
+            }
+        });
 
         btnModificarVehiculo.setBackground(new java.awt.Color(255, 255, 51));
         btnModificarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
@@ -227,7 +237,7 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
+                .addGap(169, 169, 169))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,7 +284,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -286,13 +296,19 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnIngresarVehiculoActionPerformed
 
+    private void btnConsultarVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarVehiculoActionPerformed
+        ConsultarVehiculo ventana = new ConsultarVehiculo(this);
+        ventana.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnConsultarVehiculoActionPerformed
+
     public void initAlternComponents(){
         setLocationRelativeTo(null);
     }
     
     
     /*public Image getIconImage(){
-        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("imagenes/icono_parqueadero.png"));
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("/imagenes/icono_parqueadero.png"));
         return retValue;
     }*/
     
@@ -352,4 +368,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
 }
+
+

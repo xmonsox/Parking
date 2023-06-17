@@ -19,15 +19,15 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        etqTitulo = new javax.swing.JLabel();
         campoIngreso = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        etqTipoVehiculo = new javax.swing.JLabel();
         opMoto = new javax.swing.JCheckBox();
         opCarro = new javax.swing.JCheckBox();
-        jLabel4 = new javax.swing.JLabel();
+        etqTipoPago = new javax.swing.JLabel();
         opDia = new javax.swing.JCheckBox();
         opHora = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
+        etqPlaca = new javax.swing.JLabel();
         campoPlaca = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
@@ -54,17 +54,17 @@ public class IngresarVehiculo extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Fecha/Hora Ingreso: ");
+        etqTitulo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        etqTitulo.setText("Fecha/Hora Ingreso: ");
 
         campoIngreso.setBackground(new java.awt.Color(255, 255, 153));
         campoIngreso.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         campoIngreso.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Tipo Vehiculo:");
+        etqTipoVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqTipoVehiculo.setForeground(new java.awt.Color(0, 0, 0));
+        etqTipoVehiculo.setText("Tipo Vehiculo:");
 
         opMoto.setBackground(new java.awt.Color(255, 255, 153));
         opMoto.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
@@ -76,9 +76,9 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         opCarro.setForeground(new java.awt.Color(0, 0, 0));
         opCarro.setText("Carro");
 
-        jLabel4.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Tipo Pago:");
+        etqTipoPago.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqTipoPago.setForeground(new java.awt.Color(0, 0, 0));
+        etqTipoPago.setText("Tipo Pago:");
 
         opDia.setBackground(new java.awt.Color(255, 255, 153));
         opDia.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
@@ -90,9 +90,9 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         opHora.setForeground(new java.awt.Color(0, 0, 0));
         opHora.setText("Hora");
 
-        jLabel5.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Placa:");
+        etqPlaca.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqPlaca.setForeground(new java.awt.Color(0, 0, 0));
+        etqPlaca.setText("Placa:");
 
         campoPlaca.setBackground(new java.awt.Color(255, 255, 153));
         campoPlaca.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
@@ -124,22 +124,22 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(etqTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(campoIngreso))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(etqTipoPago)
                                 .addGap(37, 37, 37))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addComponent(etqTipoVehiculo)
                                 .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))
+                                    .addComponent(etqPlaca))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoPlaca)
@@ -162,7 +162,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(etqTitulo)
                     .addComponent(campoIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -172,7 +172,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                         .addComponent(opCarro))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel3)))
+                        .addComponent(etqTipoVehiculo)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
@@ -181,10 +181,10 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                         .addComponent(opHora))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(jLabel4)))
+                        .addComponent(etqTipoPago)))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(etqPlaca)
                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,11 +219,11 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton btnAtras;
     private javax.swing.JTextField campoIngreso;
     private javax.swing.JTextField campoPlaca;
+    private javax.swing.JLabel etqPlaca;
+    private javax.swing.JLabel etqTipoPago;
+    private javax.swing.JLabel etqTipoVehiculo;
+    private javax.swing.JLabel etqTitulo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JCheckBox opCarro;
