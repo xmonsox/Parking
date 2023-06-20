@@ -2,10 +2,12 @@
 package ModuloDiaHora;
 
 import Clases.FacturaVehiculo;
+import java.awt.Color;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Locale;
+import javax.swing.JTextField;
 
 
 public class ListarDetallesVehiculo extends javax.swing.JFrame {
@@ -14,6 +16,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
     private String tipo_pago;
     private String fecha;
     FacturaVehiculo arreglo_vehiculos [];
+    
     Date fecha_salida = new Date();
 
     public ListarDetallesVehiculo(String placa, String tipo_vehiculo, String tipo_pago, String fecha, FacturaVehiculo[] arreglo_vehiculos) {
@@ -24,6 +27,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         this.arreglo_vehiculos= arreglo_vehiculos;
         initComponents();
         imprimirFactura();
+        camposDeshabilitados();
     }
     
     public void imprimirFactura(){
@@ -36,6 +40,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         String tipo_vehi = campoTipoVehi.getText();
         String fecha_llegada = campoFechaLlegada.getText();
         
+        //Calcular pago dependiendo de los tipos
         if(tipo_pago.equals("Dia") && tipo_vehi.equals("Moto")){
             campoTotal.setText("$ 3.000");
         } else if(tipo_pago.equals("Dia") && tipo_vehi.equals("Carro")){
@@ -45,8 +50,13 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
                 Date fechaLlegada = formatter.parse(fecha_llegada);
                 long diferenciaEnMinutos = (new Date().getTime() - fechaLlegada.getTime()) / (1000 * 60);
-                long total = diferenciaEnMinutos*2000;
-                campoTotal.setText(String.valueOf(total));
+                if(diferenciaEnMinutos<60){
+                    campoTotal.setText("1000");
+                }else{
+                    long calculo_horas = diferenciaEnMinutos/60;
+                    long total = calculo_horas*2000;
+                    campoTotal.setText(String.valueOf(total));
+                }  
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -55,16 +65,47 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
                 Date fechaLlegada = formatter.parse(fecha_llegada);
                 long diferenciaEnMinutos = (new Date().getTime() - fechaLlegada.getTime()) / (1000 * 60);
-                long total = diferenciaEnMinutos*1000;
-                campoTotal.setText(String.valueOf(total));
+                if(diferenciaEnMinutos<60){
+                    campoTotal.setText("500");
+                }else{
+                   long calculo_horas = diferenciaEnMinutos/60;
+                    long total = calculo_horas*1000; 
+                    campoTotal.setText(String.valueOf(total));
+                }
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
         
+        
+        
+        
+        
     }
     
+    public void camposDeshabilitados(){
+        deshabilitarCampo(campoFechaLlegada);
+        deshabilitarCampo(campoFechaSalida);
+        deshabilitarCampo(campoTipoVehi);
+        deshabilitarCampo(campoPlaca);
+        campoPagar.requestFocus();
+        deshabilitarCampo(campoTipoPago);
+        deshabilitarCampo(campoTotal);
+        deshabilitarCampo(campoDevuelta);
+    }
     
+    public void deshabilitarCampo(JTextField campo){
+        JTextField referencia = new JTextField();
+        campo.setBorder( referencia.getBorder() );
+        campo.setEnabled(false);
+        campo.setBackground(Color.GRAY );
+        campo.setForeground(Color.BLACK);
+    }
+    
+    public void habilitarCampo(JTextField campo){
+        campo.setEnabled(true);
+        campo.setBackground(Color.WHITE );
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -161,6 +202,17 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         EtqTelefono5.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         EtqTelefono5.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono5.setText("Devuelta:");
+
+        campoPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoPagarActionPerformed(evt);
+            }
+        });
+        campoPagar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoPagarKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -268,8 +320,27 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
-      
+        dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void campoPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoPagarActionPerformed
+
+    private void campoPagarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPagarKeyReleased
+        //Calculo de cuanto va a pagar y devuelta
+        String pago = campoPagar.getText();
+        String total = campoTotal.getText();
+        
+        if(Integer.parseInt(pago)<Integer.parseInt(total)){
+            System.out.println("ERROR, PAGO INSUFICENTE");
+        }else{
+            System.out.println("PAGO EXITOSO");
+        }
+        
+        int devuelta = Integer.parseInt(pago)-Integer.parseInt(total);
+        campoDevuelta.setText(String.valueOf(devuelta));
+    }//GEN-LAST:event_campoPagarKeyReleased
 
     
     

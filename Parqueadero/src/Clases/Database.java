@@ -47,6 +47,30 @@ public class Database {
         }
     }
     
+    public boolean insertarMembresia(Membresias membresia){
+        String propietario = membresia.getPropietario();
+        String telefono = membresia.getTelefono();
+        String tipo_vehiculo = membresia.getTipo_vehiculo();
+        String tipo_membresia = membresia.getTipo_membresia();
+        String placa = membresia.getPlaca();
+        String fecha_inicio = membresia.getFecha_inicio();
+        String fecha_vencimiento = membresia.getFecha_vencimiento();
+        
+        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento  ) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"')";    
+        try{
+            int respuesta = manipularDB.executeUpdate(consulta);
+            if (respuesta>0) {
+                System.out.println("REGISTRO INSERTADO CON EXITO");
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Error al insertar: "+e.getMessage());
+            return false;
+        }
+    }
+    
     public Vehiculos[] listaVehiculos(){
         Vehiculos [] listaVehiculos = new Vehiculos [100];
         try{
@@ -64,6 +88,21 @@ public class Database {
         }catch(SQLException e){
             System.out.println("Error en SELECT: "+e.getMessage());
             return listaVehiculos;
+        }
+    }
+    
+    public Membresias buscarMembresia(String placa){
+        Membresias temp = null;
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM membresias WHERE placa='"+placa+"' ");
+            registros.next();
+            if (registros.getRow()==1) {
+                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"));
+            }
+            return temp;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+            return temp;
         }
     }
     
