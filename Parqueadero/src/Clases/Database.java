@@ -25,7 +25,74 @@ public class Database {
         }
     }
     
-   /* public Persona[] listaClientes(){
+    
+    public boolean insertarVehiculo(Vehiculos vehiculo){
+        String placa = vehiculo.getPlaca();
+        String tipo_vehiculo = vehiculo.getTipo_vehiculo();
+        String tipo_pago = vehiculo.getTipo_pago();
+        String fecha = vehiculo.getFecha();
+        
+        String consulta = "INSERT INTO vehiculos(placa, tipo_vehiculo, tipo_pago, fecha_ingreso) VALUES ('"+placa+"','"+tipo_vehiculo+"','"+tipo_pago+"','"+fecha+"')";    
+        try{
+            int respuesta = manipularDB.executeUpdate(consulta);
+            if (respuesta>0) {
+                System.out.println("REGISTRO INSERTADO CON EXITO");
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Error al insertar: "+e.getMessage());
+            return false;
+        }
+    }
+    
+    public Vehiculos[] listaVehiculos(){
+        Vehiculos [] listaVehiculos = new Vehiculos [100];
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM vehiculos");
+            registros.next();
+            if (registros.getRow()==1) {
+                int indice = 0;
+                do{
+                    Vehiculos temp = new Vehiculos( registros.getString("placa"),registros.getString("tipo_vehiculo"),registros.getString("tipo_pago"),registros.getString("fecha_ingreso") );
+                    listaVehiculos[indice] = temp;
+                    indice++;
+                }while(registros.next());
+            }
+            return listaVehiculos;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+            return listaVehiculos;
+        }
+    }
+    
+    public FacturaVehiculo[] buscarVehiculoFactura(String placa){
+        FacturaVehiculo temp [] = new FacturaVehiculo [100];
+        
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM vehiculos WHERE placa='"+placa+"' ");
+            registros.next();
+            if (registros.getRow()==1) {
+                int indice = 0;
+                do{
+                    FacturaVehiculo temporal2 = new FacturaVehiculo(registros.getString("placa"), registros.getString("tipo_vehiculo"), registros.getString("tipo_pago"), registros.getString("fecha_ingreso") );
+                    temp[indice] = temporal2;
+                    indice++;
+                }while(registros.next());
+            }
+            return temp;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+            return temp;
+        }
+    }
+    
+    
+    
+    
+    
+   /*public Persona[] listaClientes(){
         Persona [] listaClientes = new Persona [100];
         try{
             ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM clientes");

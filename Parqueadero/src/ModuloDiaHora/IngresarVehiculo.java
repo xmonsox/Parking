@@ -1,15 +1,23 @@
 
 package ModuloDiaHora;
 
+import Clases.Vehiculos;
 import Principal.Menu;
+import java.awt.Color;
+import java.util.Date;
+import javax.swing.JTextField;
 
 public class IngresarVehiculo extends javax.swing.JFrame {
     
     Menu ventanaMenu;
+    Date fecha = new Date();
+    
     
     public IngresarVehiculo(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
         initComponents();
+        campoIngreso.setText(String.valueOf(fecha));
+        deshabilitarCampo(campoIngreso);
     }
     
     @SuppressWarnings("unchecked")
@@ -22,15 +30,13 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         etqTitulo = new javax.swing.JLabel();
         campoIngreso = new javax.swing.JTextField();
         etqTipoVehiculo = new javax.swing.JLabel();
-        opMoto = new javax.swing.JCheckBox();
-        opCarro = new javax.swing.JCheckBox();
         etqTipoPago = new javax.swing.JLabel();
-        opDia = new javax.swing.JCheckBox();
-        opHora = new javax.swing.JCheckBox();
         etqPlaca = new javax.swing.JLabel();
         campoPlaca = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
+        boxTipoPago = new javax.swing.JComboBox<>();
+        boxTipoVehi = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,29 +72,9 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         etqTipoVehiculo.setForeground(new java.awt.Color(0, 0, 0));
         etqTipoVehiculo.setText("Tipo Vehiculo:");
 
-        opMoto.setBackground(new java.awt.Color(255, 255, 153));
-        opMoto.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
-        opMoto.setForeground(new java.awt.Color(0, 0, 0));
-        opMoto.setText("Moto");
-
-        opCarro.setBackground(new java.awt.Color(255, 255, 153));
-        opCarro.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
-        opCarro.setForeground(new java.awt.Color(0, 0, 0));
-        opCarro.setText("Carro");
-
         etqTipoPago.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         etqTipoPago.setForeground(new java.awt.Color(0, 0, 0));
         etqTipoPago.setText("Tipo Pago:");
-
-        opDia.setBackground(new java.awt.Color(255, 255, 153));
-        opDia.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
-        opDia.setForeground(new java.awt.Color(0, 0, 0));
-        opDia.setText("Dia");
-
-        opHora.setBackground(new java.awt.Color(255, 255, 153));
-        opHora.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
-        opHora.setForeground(new java.awt.Color(0, 0, 0));
-        opHora.setText("Hora");
 
         etqPlaca.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         etqPlaca.setForeground(new java.awt.Color(0, 0, 0));
@@ -102,6 +88,11 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         btnAceptar.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
         btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnAtras.setBackground(new java.awt.Color(255, 51, 51));
         btnAtras.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
@@ -110,6 +101,24 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAtrasActionPerformed(evt);
+            }
+        });
+
+        boxTipoPago.setBackground(new java.awt.Color(255, 255, 102));
+        boxTipoPago.setForeground(new java.awt.Color(0, 0, 0));
+        boxTipoPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Dia", "Hora" }));
+        boxTipoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTipoPagoActionPerformed(evt);
+            }
+        });
+
+        boxTipoVehi.setBackground(new java.awt.Color(255, 255, 102));
+        boxTipoVehi.setForeground(new java.awt.Color(0, 0, 0));
+        boxTipoVehi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Moto", "Carro", "Bicicleta" }));
+        boxTipoVehi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxTipoVehiActionPerformed(evt);
             }
         });
 
@@ -132,23 +141,21 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(etqTipoPago)
                                 .addGap(37, 37, 37))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(etqTipoVehiculo)
-                                .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(etqPlaca))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(etqTipoVehiculo)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoPlaca)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(opMoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(opCarro, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                                    .addComponent(opDia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(opHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boxTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxTipoVehi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -164,25 +171,15 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqTitulo)
                     .addComponent(campoIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(opMoto)
-                        .addGap(18, 18, 18)
-                        .addComponent(opCarro))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(etqTipoVehiculo)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(opDia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(opHora))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(etqTipoPago)))
-                .addGap(50, 50, 50)
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxTipoVehi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etqTipoVehiculo))
+                .addGap(80, 80, 80)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqTipoPago)
+                    .addComponent(boxTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqPlaca)
                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,9 +209,59 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        String fecha = campoIngreso.getText();
+        String tipo_vehiculo = boxTipoVehi.getSelectedItem().toString();
+        String tipo_pago = boxTipoPago.getSelectedItem().toString();
+        String placa = campoPlaca.getText();
+        
+        
+        
+        if (!fecha.equals("") && !tipo_vehiculo.equals("")  && !tipo_pago.equals("") && !placa.equals("")) {
+            boolean repetido = false;
+            if (!repetido) {
+                Vehiculos temporal = new Vehiculos(placa,tipo_vehiculo,tipo_pago,fecha);
+                this.ventanaMenu.database.insertarVehiculo(temporal); 
+                this.ventanaMenu.setVisible(true);
+                System.out.println("Vehiculo Ingresado correctamente");
+                dispose();
+            }else{
+      
+                System.out.println("ERRRRORRRRR");
+            }
+        }else{
+            System.out.println("Diligencie todos los campos");
+            
+        } 
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    public void deshabilitarCampo(JTextField campo){
+        JTextField referencia = new JTextField();
+        campo.setBorder( referencia.getBorder() );
+        campo.setEnabled(false);
+        campo.setBackground(Color.GRAY );
+        campo.setForeground(Color.BLACK);
+    }
+    
+    public void habilitarCampo(JTextField campo){
+        campo.setEnabled(true);
+        campo.setBackground(Color.WHITE );
+    }
+    
+    private void boxTipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxTipoPagoActionPerformed
+
+    private void boxTipoVehiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVehiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxTipoVehiActionPerformed
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxTipoPago;
+    private javax.swing.JComboBox<String> boxTipoVehi;
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAtras;
     private javax.swing.JTextField campoIngreso;
@@ -226,9 +273,5 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JCheckBox opCarro;
-    private javax.swing.JCheckBox opDia;
-    private javax.swing.JCheckBox opHora;
-    private javax.swing.JCheckBox opMoto;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package Principal;
 
+import Clases.Database;
 import ModuloDiaHora.ConsultarVehiculo;
 import ModuloDiaHora.IngresarVehiculo;
 import java.awt.Graphics;
@@ -12,9 +13,10 @@ import javax.swing.JPanel;
 
 public class Menu extends javax.swing.JFrame {
     
-    
+    public Database database;
     
     public Menu() {
+        this.database = new Database();
         initComponents();
         initAlternComponents();
         //setIconImage(getIconImage());
@@ -119,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
         btnEliminarVehiculo.setBackground(new java.awt.Color(255, 255, 51));
         btnEliminarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnEliminarVehiculo.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminarVehiculo.setText("EliminarVehiculos");
+        btnEliminarVehiculo.setText("Eliminar Vehiculos");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -368,6 +370,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 
 }
 
