@@ -42,9 +42,9 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         
         //Calcular pago dependiendo de los tipos
         if(tipo_pago.equals("Dia") && tipo_vehi.equals("Moto")){
-            campoTotal.setText("$ 3.000");
+            campoTotal.setText("3000");
         } else if(tipo_pago.equals("Dia") && tipo_vehi.equals("Carro")){
-            campoTotal.setText("$ 5.000");
+            campoTotal.setText("5000");
         }else if(tipo_pago.equals("Hora") && tipo_vehi.equals("Carro")){
             try {
                 SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
