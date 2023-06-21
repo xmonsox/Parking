@@ -217,6 +217,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         
         
         
+        
         if (!fecha.equals("") && !tipo_vehiculo.equals("")  && !tipo_pago.equals("") && !placa.equals("")) {
             boolean repetido = false;
             if (!repetido) {

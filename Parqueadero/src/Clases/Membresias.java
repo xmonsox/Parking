@@ -11,8 +11,9 @@ public class Membresias {
     String placa;
     String fecha_inicio;
     String fecha_vencimiento;
+    String total;
 
-    public Membresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento) {
+    public Membresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento, String total) {
         this.propietario = propietario;
         this.telefono = telefono;
         this.tipo_vehiculo = tipo_vehiculo;
@@ -20,6 +21,15 @@ public class Membresias {
         this.placa = placa;
         this.fecha_inicio = fecha_inicio;
         this.fecha_vencimiento = fecha_vencimiento;
+        this.total = total;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getPropietario() {

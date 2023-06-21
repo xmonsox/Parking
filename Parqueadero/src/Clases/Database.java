@@ -55,8 +55,9 @@ public class Database {
         String placa = membresia.getPlaca();
         String fecha_inicio = membresia.getFecha_inicio();
         String fecha_vencimiento = membresia.getFecha_vencimiento();
+        String total = membresia.getTotal();
         
-        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento  ) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"')";    
+        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento, total ) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"','"+total+"')";    
         try{
             int respuesta = manipularDB.executeUpdate(consulta);
             if (respuesta>0) {
@@ -97,12 +98,32 @@ public class Database {
             ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM membresias WHERE placa='"+placa+"' ");
             registros.next();
             if (registros.getRow()==1) {
-                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"));
+                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"));
             }
             return temp;
         }catch(SQLException e){
             System.out.println("Error en SELECT: "+e.getMessage());
             return temp;
+        }
+    }
+    
+    public Membresias[] listaMembresias(){
+        Membresias [] listaMembresias = new Membresias [100];
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM membresias");
+            registros.next();
+            if (registros.getRow()==1) {
+                int indice = 0;
+                do{
+                    Membresias temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"),registros.getString("tipo_vehiculo"),registros.getString("tipo_membresia"),registros.getString("placa"),registros.getString("fecha_inicio"),registros.getString("fecha_vencimiento"),registros.getString("total") );
+                    listaMembresias[indice] = temp;
+                    indice++;
+                }while(registros.next());
+            }
+            return listaMembresias;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+            return listaMembresias;
         }
     }
     

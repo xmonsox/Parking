@@ -6,6 +6,7 @@ public class Vehiculos {
     String tipo_vehiculo;
     String tipo_pago;
     String fecha;
+    
 
     public Vehiculos(String placa, String tipo_vehiculo, String tipo_pago, String fecha) {
         this.placa = placa;

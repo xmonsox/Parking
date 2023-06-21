@@ -41,6 +41,8 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         boxTipoVehiculo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        campoTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,6 +177,19 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         jLabel8.setText("Tipo Vehiculo:");
 
         boxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Moto", "Carro" }));
+        boxTipoVehiculo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                boxTipoVehiculoMouseMoved(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Total  a pagar:");
+
+        campoTotal.setBackground(new java.awt.Color(255, 255, 102));
+        campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        campoTotal.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout contenPrincipalLayout = new javax.swing.GroupLayout(contenPrincipal);
         contenPrincipal.setLayout(contenPrincipalLayout);
@@ -182,35 +197,44 @@ public class RegistrarMembresia extends javax.swing.JFrame {
             contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contenPrincipalLayout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(contenPrincipalLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenPrincipalLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(contenPrincipalLayout.createSequentialGroup()
+                        .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxTipoMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(12, 12, 12))
-            .addGroup(contenPrincipalLayout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(contenPrincipalLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boxTipoMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12))
+                            .addGroup(contenPrincipalLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         contenPrincipalLayout.setVerticalGroup(
             contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,23 +256,27 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(boxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(28, 28, 28)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(32, 32, 32)
+                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -281,11 +309,12 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         String placa = campoPlaca.getText();
         String fecha_inicio = campoFechaInicio.getText();
         String fecha_vencimiento = campoFechaVencimiento.getText();
+        String total = campoTotal.getText();
         
-        if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("")) {
+        if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !total.equals("")){
             boolean repetido = false;
             if (!repetido) {
-                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento);
+                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total);
                 this.ventanaMenu.database.insertarMembresia(temporal); 
                 this.ventanaMenu.setVisible(true);
                 System.out.println("Membresia Ingresado correctamente");
@@ -320,23 +349,36 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         String tipo_membresia = boxTipoMembresia.getSelectedItem().toString();
         String tipo_vehiculo = boxTipoVehiculo.getSelectedItem().toString();
         
-        if(tipo_membresia.equals("Mensual")){
+        if(tipo_membresia.equals("Mensual") && tipo_vehiculo.equals("Moto")){
             Calendar calendario = Calendar.getInstance();
             calendario.setTime(fecha_comienzo);
-
             calendario.add(Calendar.DAY_OF_MONTH, 30);
-
             Date fecha_vencimiento = calendario.getTime();
             campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
-        }else if(tipo_membresia.equals("Quincenal")){
+            campoTotal.setText("30000");
+        }else if(tipo_membresia.equals("Quincenal") && tipo_vehiculo.equals("Moto")){
             Calendar calendario = Calendar.getInstance();
             calendario.setTime(fecha_comienzo);
-
             calendario.add(Calendar.DAY_OF_MONTH, 15);
-
             Date fecha_vencimiento = calendario.getTime();
             campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+            campoTotal.setText("15000");
+        }else if(tipo_membresia.equals("Mensual") && tipo_vehiculo.equals("Carro")){
+            Calendar calendario = Calendar.getInstance();
+            calendario.setTime(fecha_comienzo);
+            calendario.add(Calendar.DAY_OF_MONTH, 30);
+            Date fecha_vencimiento = calendario.getTime();
+            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+            campoTotal.setText("40000");
+        }else if(tipo_membresia.equals("Quincenal") && tipo_vehiculo.equals("Carro")){
+            Calendar calendario = Calendar.getInstance();
+            calendario.setTime(fecha_comienzo);
+            calendario.add(Calendar.DAY_OF_MONTH, 15);
+            Date fecha_vencimiento = calendario.getTime();
+            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+            campoTotal.setText("20000");
         }
+        
     }//GEN-LAST:event_boxTipoMembresiaMouseMoved
 
     private void boxTipoMembresiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseExited
@@ -359,6 +401,10 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         
     }//GEN-LAST:event_boxTipoMembresiaKeyReleased
 
+    private void boxTipoVehiculoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoVehiculoMouseMoved
+        
+    }//GEN-LAST:event_boxTipoVehiculoMouseMoved
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -371,6 +417,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private javax.swing.JTextField campoPlaca;
     private javax.swing.JTextField campoPropietario;
     private javax.swing.JTextField campoTelefono;
+    private javax.swing.JTextField campoTotal;
     private javax.swing.JPanel contenPrincipal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -380,6 +427,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }

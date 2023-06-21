@@ -348,6 +348,7 @@ public class ConsultarMembresia extends javax.swing.JFrame {
             campoPlaca.setText(temporal.getPlaca());
             campoFechaInicio.setText(temporal.getFecha_inicio());
             campoFechaVencimiento.setText(temporal.getFecha_vencimiento());
+            campoPago.setText(temporal.getTotal());
         }else{
             System.out.println("NO SE ENCONTRO LA PLACA");
             etqEncontrado.setText("Membresia NO encontrada:");
@@ -378,17 +379,12 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         
         if(tipo_vehiculo.equals("Moto") && tipo_membresia.equals("Mensual") ){
            etqPago.setText("Pago Mensual:");
-
-           campoPago.setText("30000"); 
         }else if(tipo_vehiculo.equals("Moto") && tipo_membresia.equals("Quincenal")){
             etqPago.setText("Pago Quincenal:");
-            campoPago.setText("20000"); 
         }else if(tipo_vehiculo.equals("Carro") && tipo_membresia.equals("Mensual")){
             etqPago.setText("Pago Mensual:");
-            campoPago.setText("40000"); 
         }else if(tipo_vehiculo.equals("Carro") && tipo_membresia.equals("Quincenal")){
             etqPago.setText("Pago Quincenal:");
-            campoPago.setText("30000"); 
         }
         
     }
