@@ -31,8 +31,10 @@ public class Database {
         String tipo_vehiculo = vehiculo.getTipo_vehiculo();
         String tipo_pago = vehiculo.getTipo_pago();
         String fecha = vehiculo.getFecha();
+        String nombre_espacio = vehiculo.getNombre_espacio();
+        String estado = "activo";
         
-        String consulta = "INSERT INTO vehiculos(placa, tipo_vehiculo, tipo_pago, fecha_ingreso) VALUES ('"+placa+"','"+tipo_vehiculo+"','"+tipo_pago+"','"+fecha+"')";    
+        String consulta = "INSERT INTO ingresos(placa, tipo_vehiculo, tipo_pago, fecha_ingreso, nombre_espacio, estado) VALUES ('"+placa+"','"+tipo_vehiculo+"','"+tipo_pago+"','"+fecha+"','"+nombre_espacio+"','"+estado+"')";    
         try{
             int respuesta = manipularDB.executeUpdate(consulta);
             if (respuesta>0) {
@@ -75,12 +77,12 @@ public class Database {
     public Vehiculos[] listaVehiculos(){
         Vehiculos [] listaVehiculos = new Vehiculos [100];
         try{
-            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM vehiculos");
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM ingresos");
             registros.next();
             if (registros.getRow()==1) {
                 int indice = 0;
                 do{
-                    Vehiculos temp = new Vehiculos( registros.getString("placa"),registros.getString("tipo_vehiculo"),registros.getString("tipo_pago"),registros.getString("fecha_ingreso") );
+                    Vehiculos temp = new Vehiculos( registros.getString("placa"),registros.getString("tipo_vehiculo"),registros.getString("tipo_pago"),registros.getString("fecha_ingreso"),registros.getString("nombre_espacio"),registros.getString("estado") );
                     listaVehiculos[indice] = temp;
                     indice++;
                 }while(registros.next());
@@ -89,6 +91,21 @@ public class Database {
         }catch(SQLException e){
             System.out.println("Error en SELECT: "+e.getMessage());
             return listaVehiculos;
+        }
+    }
+    
+    public Vehiculos buscarVehiculo(String placa){
+        Vehiculos temp = null;
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM ingresos WHERE placa='"+placa+"' ");
+            registros.next();
+            if (registros.getRow()==1) {
+                temp = new Vehiculos( registros.getString("placa"),registros.getString("tipo_vehiculo"),registros.getString("tipo_pago"),registros.getString("fecha_ingreso"),registros.getString("nombre_espacio"),registros.getString("estado") );
+            }
+            return temp;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+            return temp;
         }
     }
     
@@ -131,7 +148,7 @@ public class Database {
         FacturaVehiculo temp [] = new FacturaVehiculo [100];
         
         try{
-            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM vehiculos WHERE placa='"+placa+"' ");
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM ingresos WHERE placa='"+placa+"' ");
             registros.next();
             if (registros.getRow()==1) {
                 int indice = 0;
@@ -148,7 +165,22 @@ public class Database {
         }
     }
     
-    
+    public Espacios getEspacio(String nombre){
+        Espacios espacio = new Espacios(nombre, "disponible");
+        
+        try{
+            ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM ingresos WHERE nombre_espacio='"+nombre+"' AND estado='activo' ");
+            registros.next();
+            if (registros.getRow()==1) {
+                espacio.setEstado("ocupado");
+            }
+            return espacio;
+        }catch(SQLException e){
+            System.out.println("Error en SELECT: "+e.getMessage());
+        }
+        
+        return espacio;
+    }
     
     
     

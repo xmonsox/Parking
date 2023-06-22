@@ -3,6 +3,7 @@ package Principal;
 import Clases.Database;
 import ModuloDiaHora.ConsultarVehiculo;
 import ModuloDiaHora.IngresarVehiculo;
+import ModuloDiaHora.ListarDetallesVehiculo;
 import ModuloMembresia.ConsultarMembresia;
 import ModuloMembresia.GenerarFactura;
 import ModuloMembresia.ListaGeneral;
@@ -110,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Dia Hora");
+        jLabel2.setText("Dia/Hora");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -126,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
         btnIngresarVehiculo.setBackground(new java.awt.Color(255, 255, 51));
         btnIngresarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnIngresarVehiculo.setForeground(new java.awt.Color(0, 0, 0));
-        btnIngresarVehiculo.setText("Ingresar Vehiculo");
+        btnIngresarVehiculo.setText("Ingresar ");
         btnIngresarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarVehiculoActionPerformed(evt);
@@ -147,6 +148,11 @@ public class Menu extends javax.swing.JFrame {
         btnEliminarVehiculo3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnEliminarVehiculo3.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarVehiculo3.setText("Salida Vehiculos");
+        btnEliminarVehiculo3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarVehiculo3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -458,9 +464,9 @@ public class Menu extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -486,14 +492,14 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel17)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -552,6 +558,12 @@ public class Menu extends javax.swing.JFrame {
         ventana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnEliminarVehiculo2ActionPerformed
+
+    private void btnEliminarVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculo3ActionPerformed
+        ListarDetallesVehiculo ventana = new ListarDetallesVehiculo(this);
+        ventana.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnEliminarVehiculo3ActionPerformed
 
     public void initAlternComponents(){
         setLocationRelativeTo(null);

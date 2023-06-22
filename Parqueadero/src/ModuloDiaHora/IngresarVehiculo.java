@@ -1,23 +1,34 @@
 
 package ModuloDiaHora;
 
+import Clases.Espacios;
 import Clases.Vehiculos;
 import Principal.Menu;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class IngresarVehiculo extends javax.swing.JFrame {
     
     Menu ventanaMenu;
     Date fecha = new Date();
+    Espacios  espacios_motos [] ;
+    Espacios  espacios_carros [] ;
     
     
     public IngresarVehiculo(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
+        this.espacios_motos = new Espacios [10];
+        this.espacios_carros = new Espacios [10];
         initComponents();
-        campoIngreso.setText(String.valueOf(fecha));
+        actualizarEstadoEspacios();
+        
+        campoIngreso.setText(String.valueOf(fecha) );
         deshabilitarCampo(campoIngreso);
+        etqEstado.setText("Disponible");
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -39,7 +50,9 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         boxTipoPago = new javax.swing.JComboBox<>();
         boxTipoVehi = new javax.swing.JComboBox<>();
         etqPlaca1 = new javax.swing.JLabel();
-        panelEspacio = new javax.swing.JPanel();
+        etqEspacio = new javax.swing.JLabel();
+        etqPlaca2 = new javax.swing.JLabel();
+        etqEstado = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         m1 = new javax.swing.JButton();
         m2 = new javax.swing.JButton();
@@ -81,7 +94,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ingreso Vehiculo");
+        jLabel1.setText("Ingreso Parqueadero");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -160,20 +173,16 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         etqPlaca1.setForeground(new java.awt.Color(0, 0, 0));
         etqPlaca1.setText("Espacio:");
 
-        panelEspacio.setBackground(new java.awt.Color(204, 204, 204));
-        panelEspacio.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED)));
-        panelEspacio.setForeground(new java.awt.Color(0, 0, 0));
+        etqEspacio.setBackground(new java.awt.Color(255, 255, 255));
+        etqEspacio.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        etqEspacio.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout panelEspacioLayout = new javax.swing.GroupLayout(panelEspacio);
-        panelEspacio.setLayout(panelEspacioLayout);
-        panelEspacioLayout.setHorizontalGroup(
-            panelEspacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 42, Short.MAX_VALUE)
-        );
-        panelEspacioLayout.setVerticalGroup(
-            panelEspacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
+        etqPlaca2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqPlaca2.setForeground(new java.awt.Color(0, 0, 0));
+        etqPlaca2.setText("Estado:");
+
+        etqEstado.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        etqEstado.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,7 +207,8 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                                 .addComponent(etqTipoPago)
                                 .addComponent(etqTipoVehiculo)
                                 .addComponent(etqPlaca)
-                                .addComponent(etqPlaca1)))
+                                .addComponent(etqPlaca1)
+                                .addComponent(etqPlaca2)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -207,10 +217,11 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                                 .addGap(56, 56, 56))
                             .addComponent(campoPlaca)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(boxTipoVehi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(boxTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(panelEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(etqEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etqEspacio, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -234,11 +245,15 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqPlaca)
                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqPlaca1)
-                    .addComponent(panelEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqPlaca2)
+                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,76 +264,176 @@ public class IngresarVehiculo extends javax.swing.JFrame {
 
         m1.setBackground(new java.awt.Color(0, 204, 51));
         m1.setText("M1");
+        m1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m2.setBackground(new java.awt.Color(0, 204, 51));
         m2.setText("M2");
+        m2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m3.setBackground(new java.awt.Color(0, 204, 51));
         m3.setText("M3");
+        m3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m4.setBackground(new java.awt.Color(0, 204, 51));
         m4.setText("M4");
+        m4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m5.setBackground(new java.awt.Color(0, 204, 51));
         m5.setText("M5");
+        m5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m6.setBackground(new java.awt.Color(0, 204, 51));
         m6.setText("M6");
+        m6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m7.setBackground(new java.awt.Color(0, 204, 51));
         m7.setText("M7");
+        m7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m8.setBackground(new java.awt.Color(0, 204, 51));
         m8.setText("M8");
+        m8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c4.setBackground(new java.awt.Color(0, 204, 51));
         c4.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c4.setText("C4");
+        c4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m10.setBackground(new java.awt.Color(0, 204, 51));
         m10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         m10.setText("M10");
+        m10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c2.setBackground(new java.awt.Color(0, 204, 51));
         c2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c2.setText("C2");
+        c2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c3.setBackground(new java.awt.Color(0, 204, 51));
         c3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c3.setText("C3");
+        c3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m9.setBackground(new java.awt.Color(0, 204, 51));
         m9.setText("M9");
+        m9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c5.setBackground(new java.awt.Color(0, 204, 51));
         c5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c5.setText("C5");
+        c5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c7.setBackground(new java.awt.Color(0, 204, 51));
         c7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c7.setText("C7");
+        c7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c6.setBackground(new java.awt.Color(0, 204, 51));
         c6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c6.setText("C6");
+        c6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c8.setBackground(new java.awt.Color(0, 204, 51));
         c8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c8.setText("C8");
+        c8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c9.setBackground(new java.awt.Color(0, 204, 51));
         c9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c9.setText("C9");
+        c9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c10.setBackground(new java.awt.Color(0, 204, 51));
         c10.setFont(new java.awt.Font("Segoe UI", 3, 10)); // NOI18N
         c10.setText("C10");
+        c10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c1.setBackground(new java.awt.Color(0, 204, 51));
         c1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c1.setText("C1");
+        c1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
-        jPanel4.setBackground(new java.awt.Color(255, 0, 51));
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -510,20 +625,74 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         this.ventanaMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+    
+    public void actualizarEstadoEspacios(){
+        this.espacios_motos[0] = this.ventanaMenu.database.getEspacio("M1");
+        this.espacios_motos[1] = this.ventanaMenu.database.getEspacio("M2");
+        this.espacios_motos[2] = this.ventanaMenu.database.getEspacio("M3");
+        this.espacios_motos[3] = this.ventanaMenu.database.getEspacio("M4");
+        this.espacios_motos[4] = this.ventanaMenu.database.getEspacio("M5");
+        this.espacios_motos[5] = this.ventanaMenu.database.getEspacio("M6");
+        this.espacios_motos[6] = this.ventanaMenu.database.getEspacio("M7");
+        this.espacios_motos[7] = this.ventanaMenu.database.getEspacio("M8");
+        this.espacios_motos[8] = this.ventanaMenu.database.getEspacio("M9");
+        this.espacios_motos[9] = this.ventanaMenu.database.getEspacio("M10");
+        
+        this.renderizarEstadoEspacio( this.m1, this.espacios_motos[0] );
+        this.renderizarEstadoEspacio( this.m2, this.espacios_motos[1] );
+        this.renderizarEstadoEspacio( this.m3, this.espacios_motos[2] );
+        this.renderizarEstadoEspacio( this.m4, this.espacios_motos[3] );
+        this.renderizarEstadoEspacio( this.m5, this.espacios_motos[4] );
+        this.renderizarEstadoEspacio( this.m6, this.espacios_motos[5] );
+        this.renderizarEstadoEspacio( this.m7, this.espacios_motos[6] );
+        this.renderizarEstadoEspacio( this.m8, this.espacios_motos[7] );
+        this.renderizarEstadoEspacio( this.m9, this.espacios_motos[8] );
+        this.renderizarEstadoEspacio( this.m10, this.espacios_motos[9] );
+        
+        this.espacios_carros[0] = this.ventanaMenu.database.getEspacio("C1");
+        this.espacios_carros[1] = this.ventanaMenu.database.getEspacio("C2");
+        this.espacios_carros[2] = this.ventanaMenu.database.getEspacio("C3");
+        this.espacios_carros[3] = this.ventanaMenu.database.getEspacio("C4");
+        this.espacios_carros[4] = this.ventanaMenu.database.getEspacio("C5");
+        this.espacios_carros[5] = this.ventanaMenu.database.getEspacio("C6");
+        this.espacios_carros[6] = this.ventanaMenu.database.getEspacio("C7");
+        this.espacios_carros[7] = this.ventanaMenu.database.getEspacio("C8");
+        this.espacios_carros[8] = this.ventanaMenu.database.getEspacio("C9");
+        this.espacios_carros[9] = this.ventanaMenu.database.getEspacio("C10");
+        
+        this.renderizarEstadoEspacio( this.c1, this.espacios_carros[0] );
+        this.renderizarEstadoEspacio( this.c2, this.espacios_carros[1] );
+        this.renderizarEstadoEspacio( this.c3, this.espacios_carros[2] );
+        this.renderizarEstadoEspacio( this.c4, this.espacios_carros[3] );
+        this.renderizarEstadoEspacio( this.c5, this.espacios_carros[4] );
+        this.renderizarEstadoEspacio( this.c6, this.espacios_carros[5] );
+        this.renderizarEstadoEspacio( this.c7, this.espacios_carros[6] );
+        this.renderizarEstadoEspacio( this.c8, this.espacios_carros[7] );
+        this.renderizarEstadoEspacio( this.c9, this.espacios_carros[8] );
+        this.renderizarEstadoEspacio( this.c10, this.espacios_carros[9] );
+        
+        
+    }
+    
+    public void renderizarEstadoEspacio(JButton boton, Espacios espacio){
+        boton.setBackground(  (espacio.getEstado().equalsIgnoreCase("disponible"))?  Color.green : Color.red  );
+        
+        boton.setEnabled( espacio.getEstado().equalsIgnoreCase("disponible") );
+    }
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String fecha = campoIngreso.getText();
         String tipo_vehiculo = boxTipoVehi.getSelectedItem().toString();
         String tipo_pago = boxTipoPago.getSelectedItem().toString();
         String placa = campoPlaca.getText();
-        
-        
+        String espacio = etqEspacio.getText();
+        String estado = etqEstado.getText();
         
         
         if (!fecha.equals("") && !tipo_vehiculo.equals("")  && !tipo_pago.equals("") && !placa.equals("")) {
             boolean repetido = false;
             if (!repetido) {
-                Vehiculos temporal = new Vehiculos(placa,tipo_vehiculo,tipo_pago,fecha);
+                Vehiculos temporal = new Vehiculos(placa,tipo_vehiculo,tipo_pago,fecha,espacio, estado );
                 this.ventanaMenu.database.insertarVehiculo(temporal); 
                 this.ventanaMenu.setVisible(true);
                 System.out.println("Vehiculo Ingresado correctamente");
@@ -558,6 +727,13 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private void boxTipoVehiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVehiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoVehiActionPerformed
+
+    private void marcarEspacio(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcarEspacio
+        JButton boton = (JButton) evt.getSource();
+        etqEspacio.setText(String.valueOf(boton.getText()));
+        etqEstado.setText("Ocupado");
+
+    }//GEN-LAST:event_marcarEspacio
     
     
     
@@ -579,8 +755,11 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton c9;
     private javax.swing.JTextField campoIngreso;
     private javax.swing.JTextField campoPlaca;
+    private javax.swing.JLabel etqEspacio;
+    private javax.swing.JLabel etqEstado;
     private javax.swing.JLabel etqPlaca;
     private javax.swing.JLabel etqPlaca1;
+    private javax.swing.JLabel etqPlaca2;
     private javax.swing.JLabel etqTipoPago;
     private javax.swing.JLabel etqTipoVehiculo;
     private javax.swing.JLabel etqTitulo;
@@ -606,6 +785,5 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private javax.swing.JButton m7;
     private javax.swing.JButton m8;
     private javax.swing.JButton m9;
-    private javax.swing.JPanel panelEspacio;
     // End of variables declaration//GEN-END:variables
 }

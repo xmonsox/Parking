@@ -3,6 +3,7 @@ package ModuloDiaHora;
 
 import Clases.Database;
 import Clases.FacturaVehiculo;
+import Clases.Membresias;
 import Clases.Vehiculos;
 import Principal.Menu;
 import java.awt.Color;
@@ -35,6 +36,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         contenVehiculos = new javax.swing.JTextArea();
         btnAtras = new javax.swing.JButton();
+        btnBuscarPorPlaca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,19 +61,36 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
             }
         });
 
+        btnBuscarPorPlaca.setBackground(new java.awt.Color(0, 0, 0));
+        btnBuscarPorPlaca.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        btnBuscarPorPlaca.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarPorPlaca.setText("BUSCAR POR PLACA");
+        btnBuscarPorPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPorPlacaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnBuscarPorPlaca)
+                                .addGap(306, 306, 306))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,10 +98,12 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(btnBuscarPorPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAtras, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -93,9 +114,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -105,6 +124,11 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         this.ventanaMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnBuscarPorPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPorPlacaActionPerformed
+        ConsultarVehiculoEspecifico ventana = new ConsultarVehiculoEspecifico(this.ventanaMenu);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnBuscarPorPlacaActionPerformed
     
     public void initAlternComponents(){
         setLocationRelativeTo(null);
@@ -116,7 +140,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
     public void imprimirVehiculos(){
        
         Vehiculos listaVehiculos [] = ( this.ventanaMenu.database.listaVehiculos()); 
-        btnDetalles = new JButton [listaVehiculos.length];
+        //btnDetalles = new JButton [listaVehiculos.length];
         
         if (listaVehiculos!=null) {
             for(int i = 0; i < listaVehiculos.length; i++) {
@@ -124,9 +148,9 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
                 
                 if(vehiculo != null) {
                     etqTemporal = new JLabel("Placa: " + vehiculo.getPlaca() + " - Tipo Vehiculo: " + vehiculo.getTipo_vehiculo() + " - Tipo Pago: " + vehiculo.getTipo_pago() + "- Fecha: " + vehiculo.getFecha() + " - ");
-                    btnDetalles[i] = new JButton("Salida");
+                    //btnDetalles[i] = new JButton("Salida");
 
-                    ActionListener evento_01 = new ActionListener() {
+                    /*ActionListener evento_01 = new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             Database instancia = new Database();
@@ -135,13 +159,13 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
                             
                             ventana.setVisible(true);
                         }
-                    };
-                    btnDetalles[i].addActionListener(evento_01);
+                    };*/
+                    //btnDetalles[i].addActionListener(evento_01);
 
                     etqTemporal.setFont(new Font("Arial", Font.PLAIN, 12));
                     etqTemporal.setBorder(new EmptyBorder(2, 10, 2, 10));
                     contenVehiculos.add(etqTemporal);
-                    contenVehiculos.add(btnDetalles[i]);
+                    //contenVehiculos.add(btnDetalles[i]);
                 } else {
                     break;
                 }
@@ -155,6 +179,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnBuscarPorPlaca;
     private javax.swing.JTextArea contenVehiculos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
