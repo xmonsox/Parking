@@ -29,6 +29,7 @@ import Clases.Membresias;
 import ModuloDiaHora.ListarDetallesVehiculo;
 import Principal.Menu;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 
@@ -40,6 +41,8 @@ public class GenerarFactura extends javax.swing.JFrame {
     public GenerarFactura(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
 
    
@@ -104,6 +107,7 @@ public class GenerarFactura extends javax.swing.JFrame {
         btnImprimir.setBackground(new java.awt.Color(255, 255, 102));
         btnImprimir.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         btnImprimir.setForeground(new java.awt.Color(0, 0, 0));
+        btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_imprimir.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +122,7 @@ public class GenerarFactura extends javax.swing.JFrame {
         btnAtras.setBackground(new java.awt.Color(255, 51, 51));
         btnAtras.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         btnAtras.setForeground(new java.awt.Color(0, 0, 0));
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_atras.png"))); // NOI18N
         btnAtras.setText("Atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +137,7 @@ public class GenerarFactura extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono_salida.png"))); // NOI18N
         jLabel1.setText("FACTURA");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -280,7 +286,7 @@ public class GenerarFactura extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
                             .addComponent(EtqNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -330,8 +336,8 @@ public class GenerarFactura extends javax.swing.JFrame {
                     .addComponent(campoDevuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnImprimir)
+                    .addComponent(btnAtras))
                 .addGap(20, 20, 20))
         );
 

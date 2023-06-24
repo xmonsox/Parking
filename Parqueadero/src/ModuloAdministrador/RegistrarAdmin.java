@@ -4,6 +4,8 @@
  */
 package ModuloAdministrador;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author JUAN DAVID
@@ -15,6 +17,8 @@ public class RegistrarAdmin extends javax.swing.JFrame {
      */
     public RegistrarAdmin() {
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
 
     /**

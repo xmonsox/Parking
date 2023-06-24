@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
@@ -24,6 +25,8 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
     public ConsultarVehiculo(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
         initComponents();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
+        this.setLocationRelativeTo(null);
         initAlternComponents();
     }
 

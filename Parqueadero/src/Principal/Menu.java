@@ -24,7 +24,8 @@ public class Menu extends javax.swing.JFrame {
         this.database = new Database();
         initComponents();
         initAlternComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
 
  
@@ -63,7 +64,6 @@ public class Menu extends javax.swing.JFrame {
         btnRegistrarMembresia = new javax.swing.JButton();
         btnConsultarVehiculo1 = new javax.swing.JButton();
         btnModificarVehiculo1 = new javax.swing.JButton();
-        btnEliminarVehiculo1 = new javax.swing.JButton();
         btnEliminarVehiculo2 = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
@@ -91,6 +91,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono_salida.png"))); // NOI18N
         jLabel1.setText("Parking ExoticSoft");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -127,6 +128,7 @@ public class Menu extends javax.swing.JFrame {
         btnIngresarVehiculo.setBackground(new java.awt.Color(255, 255, 51));
         btnIngresarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnIngresarVehiculo.setForeground(new java.awt.Color(0, 0, 0));
+        btnIngresarVehiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_entrar.png"))); // NOI18N
         btnIngresarVehiculo.setText("Ingresar ");
         btnIngresarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +139,7 @@ public class Menu extends javax.swing.JFrame {
         btnConsultarVehiculo.setBackground(new java.awt.Color(255, 255, 51));
         btnConsultarVehiculo.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnConsultarVehiculo.setForeground(new java.awt.Color(0, 0, 0));
+        btnConsultarVehiculo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_consult.png"))); // NOI18N
         btnConsultarVehiculo.setText("Consultar Vehiculos");
         btnConsultarVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +150,7 @@ public class Menu extends javax.swing.JFrame {
         btnEliminarVehiculo3.setBackground(new java.awt.Color(255, 255, 51));
         btnEliminarVehiculo3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnEliminarVehiculo3.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminarVehiculo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_out.png"))); // NOI18N
         btnEliminarVehiculo3.setText("Salida Vehiculos");
         btnEliminarVehiculo3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,13 +175,13 @@ public class Menu extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnIngresarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnIngresarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultarVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminarVehiculo3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(btnConsultarVehiculo)
+                .addGap(11, 11, 11)
+                .addComponent(btnEliminarVehiculo3)
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
@@ -247,6 +251,7 @@ public class Menu extends javax.swing.JFrame {
         btnRegistrarMembresia.setBackground(new java.awt.Color(255, 255, 51));
         btnRegistrarMembresia.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnRegistrarMembresia.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrarMembresia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_register.png"))); // NOI18N
         btnRegistrarMembresia.setText("Registrar Membresia");
         btnRegistrarMembresia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +262,7 @@ public class Menu extends javax.swing.JFrame {
         btnConsultarVehiculo1.setBackground(new java.awt.Color(255, 255, 51));
         btnConsultarVehiculo1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnConsultarVehiculo1.setForeground(new java.awt.Color(0, 0, 0));
+        btnConsultarVehiculo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_s.png"))); // NOI18N
         btnConsultarVehiculo1.setText("Consulta Especifica");
         btnConsultarVehiculo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,6 +273,7 @@ public class Menu extends javax.swing.JFrame {
         btnModificarVehiculo1.setBackground(new java.awt.Color(255, 255, 51));
         btnModificarVehiculo1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnModificarVehiculo1.setForeground(new java.awt.Color(0, 0, 0));
+        btnModificarVehiculo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_consult.png"))); // NOI18N
         btnModificarVehiculo1.setText("Consulta General");
         btnModificarVehiculo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,14 +281,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarVehiculo1.setBackground(new java.awt.Color(255, 255, 51));
-        btnEliminarVehiculo1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
-        btnEliminarVehiculo1.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminarVehiculo1.setText("Anular Membresia");
-
         btnEliminarVehiculo2.setBackground(new java.awt.Color(255, 255, 51));
         btnEliminarVehiculo2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         btnEliminarVehiculo2.setForeground(new java.awt.Color(0, 0, 0));
+        btnEliminarVehiculo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icon_factura.png"))); // NOI18N
         btnEliminarVehiculo2.setText("Generar Factura");
         btnEliminarVehiculo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -296,20 +299,14 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnModificarVehiculo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRegistrarMembresia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnModificarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                        .addComponent(btnEliminarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnRegistrarMembresia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnConsultarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnEliminarVehiculo2, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                    .addComponent(btnConsultarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                 .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarVehiculo2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,15 +314,13 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrarMembresia)
                     .addComponent(btnConsultarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModificarVehiculo1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminarVehiculo2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+                    .addComponent(btnModificarVehiculo1)
+                    .addComponent(btnEliminarVehiculo2))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
@@ -416,7 +411,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))))
             .addComponent(jSeparator6)
@@ -505,7 +500,7 @@ public class Menu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(jLabel23))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -613,7 +608,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultarVehiculo;
     private javax.swing.JButton btnConsultarVehiculo1;
-    private javax.swing.JButton btnEliminarVehiculo1;
     private javax.swing.JButton btnEliminarVehiculo2;
     private javax.swing.JButton btnEliminarVehiculo3;
     private javax.swing.JButton btnIngresarVehiculo;

@@ -4,6 +4,7 @@ package ModuloMembresia;
 import Clases.Membresias;
 import Principal.Menu;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 
@@ -13,7 +14,8 @@ public class ConsultarMembresia extends javax.swing.JFrame {
     public ConsultarMembresia(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
         initComponents();
-        
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
+        this.setLocationRelativeTo(null);
     }
 
     
