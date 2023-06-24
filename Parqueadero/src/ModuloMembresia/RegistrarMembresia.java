@@ -1,21 +1,29 @@
 
 package ModuloMembresia;
 
+import Clases.Espacios;
 import Clases.Membresias;
 import Principal.Menu;
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JButton;
 
 public class RegistrarMembresia extends javax.swing.JFrame {
 
     Menu ventanaMenu;
     Date fecha_comienzo = new Date();
+    Espacios  espacios_motos [] ;
+    Espacios  espacios_carros [] ;
     
     public RegistrarMembresia(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
+        this.espacios_motos = new Espacios [10];
+        this.espacios_carros = new Espacios [10];
         initComponents();
         Fecha();
-        
+        actualizarEstadoEspacios();
+        etqEstado.setText("Disponible");
     }
 
     @SuppressWarnings("unchecked")
@@ -43,8 +51,10 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         boxTipoVehiculo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         campoTotal = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        etqPlaca1 = new javax.swing.JLabel();
+        etqEspacio = new javax.swing.JLabel();
+        etqPlaca2 = new javax.swing.JLabel();
+        etqEstado = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         m2 = new javax.swing.JButton();
         m3 = new javax.swing.JButton();
@@ -223,23 +233,20 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         campoTotal.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Espacio");
+        etqPlaca1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqPlaca1.setForeground(new java.awt.Color(0, 0, 0));
+        etqPlaca1.setText("Espacio:");
 
-        jPanel7.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        etqEspacio.setBackground(new java.awt.Color(255, 255, 255));
+        etqEspacio.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        etqEspacio.setForeground(new java.awt.Color(0, 0, 0));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 48, Short.MAX_VALUE)
-        );
+        etqPlaca2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
+        etqPlaca2.setForeground(new java.awt.Color(0, 0, 0));
+        etqPlaca2.setText("Estado:");
+
+        etqEstado.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
+        etqEstado.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout contenPrincipalLayout = new javax.swing.GroupLayout(contenPrincipal);
         contenPrincipal.setLayout(contenPrincipalLayout);
@@ -256,6 +263,11 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenPrincipalLayout.createSequentialGroup()
+                        .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etqPlaca1)
+                            .addComponent(etqPlaca2))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(contenPrincipalLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,8 +280,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(contenPrincipalLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -285,7 +296,8 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(12, Short.MAX_VALUE))))))
         );
         contenPrincipalLayout.setVerticalGroup(
@@ -324,15 +336,15 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenPrincipalLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel15)
-                        .addGap(35, 35, 35))
-                    .addGroup(contenPrincipalLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)))
+                .addGap(37, 37, 37)
+                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqPlaca1)
+                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqPlaca2)
+                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,9 +355,19 @@ public class RegistrarMembresia extends javax.swing.JFrame {
 
         m2.setBackground(new java.awt.Color(0, 204, 51));
         m2.setText("M2");
+        m2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m3.setBackground(new java.awt.Color(0, 204, 51));
         m3.setText("M3");
+        m3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));
         jLabel10.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
@@ -367,65 +389,150 @@ public class RegistrarMembresia extends javax.swing.JFrame {
 
         m4.setBackground(new java.awt.Color(0, 204, 51));
         m4.setText("M4");
+        m4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m5.setBackground(new java.awt.Color(0, 204, 51));
         m5.setText("M5");
+        m5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m6.setBackground(new java.awt.Color(0, 204, 51));
         m6.setText("M6");
+        m6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m7.setBackground(new java.awt.Color(0, 204, 51));
         m7.setText("M7");
+        m7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m8.setBackground(new java.awt.Color(0, 204, 51));
         m8.setText("M8");
+        m8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c4.setBackground(new java.awt.Color(0, 204, 51));
         c4.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c4.setText("C4");
+        c4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m10.setBackground(new java.awt.Color(0, 204, 51));
         m10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         m10.setText("M10");
+        m10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c2.setBackground(new java.awt.Color(0, 204, 51));
         c2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c2.setText("C2");
+        c2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c3.setBackground(new java.awt.Color(0, 204, 51));
         c3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c3.setText("C3");
+        c3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         m9.setBackground(new java.awt.Color(0, 204, 51));
         m9.setText("M9");
+        m9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c5.setBackground(new java.awt.Color(0, 204, 51));
         c5.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c5.setText("C5");
+        c5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c7.setBackground(new java.awt.Color(0, 204, 51));
         c7.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c7.setText("C7");
+        c7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c6.setBackground(new java.awt.Color(0, 204, 51));
         c6.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c6.setText("C6");
+        c6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c8.setBackground(new java.awt.Color(0, 204, 51));
         c8.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c8.setText("C8");
+        c8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c9.setBackground(new java.awt.Color(0, 204, 51));
         c9.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c9.setText("C9");
+        c9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c10.setBackground(new java.awt.Color(0, 204, 51));
         c10.setFont(new java.awt.Font("Segoe UI", 3, 10)); // NOI18N
         c10.setText("C10");
+        c10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         c1.setBackground(new java.awt.Color(0, 204, 51));
         c1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         c1.setText("C1");
+        c1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(255, 0, 51));
 
@@ -460,6 +567,11 @@ public class RegistrarMembresia extends javax.swing.JFrame {
 
         m1.setBackground(new java.awt.Color(0, 204, 51));
         m1.setText("M1");
+        m1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                marcarEspacio(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(0, 204, 51));
 
@@ -601,7 +713,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
                                 .addComponent(jLabel10)
                                 .addGap(11, 11, 11))
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -654,11 +765,13 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         String fecha_inicio = campoFechaInicio.getText();
         String fecha_vencimiento = campoFechaVencimiento.getText();
         String total = campoTotal.getText();
+        String nombre_espacio = etqEspacio.getText();
+        String estado = etqEstado.getText();
         
         if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !total.equals("")){
             boolean repetido = false;
             if (!repetido) {
-                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total);
+                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total,nombre_espacio,estado);
                 this.ventanaMenu.database.insertarMembresia(temporal); 
                 this.ventanaMenu.setVisible(true);
                 System.out.println("Membresia Ingresado correctamente");
@@ -724,7 +837,60 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_boxTipoMembresiaMouseMoved
-
+    
+    public void actualizarEstadoEspacios(){
+        this.espacios_motos[0] = this.ventanaMenu.database.relacionEspacio("M1");
+        this.espacios_motos[1] = this.ventanaMenu.database.relacionEspacio("M2");
+        this.espacios_motos[2] = this.ventanaMenu.database.relacionEspacio("M3");
+        this.espacios_motos[3] = this.ventanaMenu.database.relacionEspacio("M4");
+        this.espacios_motos[4] = this.ventanaMenu.database.relacionEspacio("M5");
+        this.espacios_motos[5] = this.ventanaMenu.database.relacionEspacio("M6");
+        this.espacios_motos[6] = this.ventanaMenu.database.relacionEspacio("M7");
+        this.espacios_motos[7] = this.ventanaMenu.database.relacionEspacio("M8");
+        this.espacios_motos[8] = this.ventanaMenu.database.relacionEspacio("M9");
+        this.espacios_motos[9] = this.ventanaMenu.database.relacionEspacio("M10");
+        
+        this.renderizarEstadoEspacio( this.m1, this.espacios_motos[0] );
+        this.renderizarEstadoEspacio( this.m2, this.espacios_motos[1] );
+        this.renderizarEstadoEspacio( this.m3, this.espacios_motos[2] );
+        this.renderizarEstadoEspacio( this.m4, this.espacios_motos[3] );
+        this.renderizarEstadoEspacio( this.m5, this.espacios_motos[4] );
+        this.renderizarEstadoEspacio( this.m6, this.espacios_motos[5] );
+        this.renderizarEstadoEspacio( this.m7, this.espacios_motos[6] );
+        this.renderizarEstadoEspacio( this.m8, this.espacios_motos[7] );
+        this.renderizarEstadoEspacio( this.m9, this.espacios_motos[8] );
+        this.renderizarEstadoEspacio( this.m10, this.espacios_motos[9] );
+        
+        this.espacios_carros[0] = this.ventanaMenu.database.relacionEspacio("C1");
+        this.espacios_carros[1] = this.ventanaMenu.database.relacionEspacio("C2");
+        this.espacios_carros[2] = this.ventanaMenu.database.relacionEspacio("C3");
+        this.espacios_carros[3] = this.ventanaMenu.database.relacionEspacio("C4");
+        this.espacios_carros[4] = this.ventanaMenu.database.relacionEspacio("C5");
+        this.espacios_carros[5] = this.ventanaMenu.database.relacionEspacio("C6");
+        this.espacios_carros[6] = this.ventanaMenu.database.relacionEspacio("C7");
+        this.espacios_carros[7] = this.ventanaMenu.database.relacionEspacio("C8");
+        this.espacios_carros[8] = this.ventanaMenu.database.relacionEspacio("C9");
+        this.espacios_carros[9] = this.ventanaMenu.database.relacionEspacio("C10");
+        
+        this.renderizarEstadoEspacio( this.c1, this.espacios_carros[0] );
+        this.renderizarEstadoEspacio( this.c2, this.espacios_carros[1] );
+        this.renderizarEstadoEspacio( this.c3, this.espacios_carros[2] );
+        this.renderizarEstadoEspacio( this.c4, this.espacios_carros[3] );
+        this.renderizarEstadoEspacio( this.c5, this.espacios_carros[4] );
+        this.renderizarEstadoEspacio( this.c6, this.espacios_carros[5] );
+        this.renderizarEstadoEspacio( this.c7, this.espacios_carros[6] );
+        this.renderizarEstadoEspacio( this.c8, this.espacios_carros[7] );
+        this.renderizarEstadoEspacio( this.c9, this.espacios_carros[8] );
+        this.renderizarEstadoEspacio( this.c10, this.espacios_carros[9] );  
+    }
+    
+    public void renderizarEstadoEspacio(JButton boton, Espacios espacio){
+        boton.setBackground(  (espacio.getEstado().equalsIgnoreCase("disponible"))?  Color.green : Color.red  );
+        boton.setEnabled( espacio.getEstado().equalsIgnoreCase("disponible") );
+    }
+    
+    
+    
     private void boxTipoMembresiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseExited
         
     }//GEN-LAST:event_boxTipoMembresiaMouseExited
@@ -748,6 +914,12 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private void boxTipoVehiculoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoVehiculoMouseMoved
         
     }//GEN-LAST:event_boxTipoVehiculoMouseMoved
+
+    private void marcarEspacio(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcarEspacio
+        JButton boton = (JButton) evt.getSource();
+        etqEspacio.setText(String.valueOf(boton.getText()));
+        etqEstado.setText("Ocupado");
+    }//GEN-LAST:event_marcarEspacio
 
     
 
@@ -773,13 +945,16 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JTextField campoTotal;
     private javax.swing.JPanel contenPrincipal;
+    private javax.swing.JLabel etqEspacio;
+    private javax.swing.JLabel etqEstado;
+    private javax.swing.JLabel etqPlaca1;
+    private javax.swing.JLabel etqPlaca2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -794,7 +969,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JButton m1;
     private javax.swing.JButton m10;
     private javax.swing.JButton m2;

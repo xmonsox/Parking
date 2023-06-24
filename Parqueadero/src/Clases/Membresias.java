@@ -12,8 +12,10 @@ public class Membresias {
     String fecha_inicio;
     String fecha_vencimiento;
     String total;
+    String nombre_espacio;
+    String estado;
 
-    public Membresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento, String total) {
+    public Membresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento, String total, String nombre_espacio, String estado) {
         this.propietario = propietario;
         this.telefono = telefono;
         this.tipo_vehiculo = tipo_vehiculo;
@@ -22,8 +24,27 @@ public class Membresias {
         this.fecha_inicio = fecha_inicio;
         this.fecha_vencimiento = fecha_vencimiento;
         this.total = total;
+        this.nombre_espacio = nombre_espacio;
+        this.estado = estado;
     }
 
+    public String getNombre_espacio() {
+        return nombre_espacio;
+    }
+
+    public void setNombre_espacio(String nombre_espacio) {
+        this.nombre_espacio = nombre_espacio;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+   
     public String getTotal() {
         return total;
     }

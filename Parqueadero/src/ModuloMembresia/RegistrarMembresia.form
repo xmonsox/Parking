@@ -59,6 +59,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="etqPlaca1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="etqPlaca2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -74,7 +81,6 @@
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel15" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -93,7 +99,8 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="campoTotal" min="-2" pref="319" max="-2" attributes="0"/>
                                       <Component id="campoFechaVencimiento" min="-2" pref="319" max="-2" attributes="0"/>
-                                      <Component id="jPanel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etqEspacio" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
+                                      <Component id="etqEstado" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="12" max="32767" attributes="0"/>
                               </Group>
@@ -147,18 +154,17 @@
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="campoTotal" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="22" max="32767" attributes="0"/>
-                      </Group>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etqPlaca1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etqEspacio" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="etqPlaca2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="etqEstado" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAtras" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="btnAceptar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
@@ -446,42 +452,51 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
+        <Component class="javax.swing.JLabel" name="etqPlaca1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="3"/>
+              <Font name="Source Sans Pro SemiBold" size="24" style="3"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Espacio"/>
+            <Property name="text" type="java.lang.String" value="Espacio:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel7">
+        <Component class="javax.swing.JLabel" name="etqEspacio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="99" red="99" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
-                <BevelBorder/>
-              </Border>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="3"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etqPlaca2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Source Sans Pro SemiBold" size="24" style="3"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Estado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="etqEstado">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="24" style="3"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -625,7 +640,6 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               </Group>
@@ -660,6 +674,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m3">
           <Properties>
@@ -668,6 +685,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -724,6 +744,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M4"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m5">
           <Properties>
@@ -732,6 +755,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M5"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m6">
           <Properties>
@@ -740,6 +766,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M6"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m7">
           <Properties>
@@ -748,6 +777,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M7"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m8">
           <Properties>
@@ -756,6 +788,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M8"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c4">
           <Properties>
@@ -767,6 +802,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C4"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m10">
           <Properties>
@@ -778,6 +816,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M10"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c2">
           <Properties>
@@ -789,6 +830,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C2"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c3">
           <Properties>
@@ -800,6 +844,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="m9">
           <Properties>
@@ -808,6 +855,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M9"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c5">
           <Properties>
@@ -819,6 +869,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C5"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c7">
           <Properties>
@@ -830,6 +883,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C7"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c6">
           <Properties>
@@ -841,6 +897,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C6"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c8">
           <Properties>
@@ -852,6 +911,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C8"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c9">
           <Properties>
@@ -863,6 +925,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C9"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c10">
           <Properties>
@@ -874,6 +939,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C10"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="c1">
           <Properties>
@@ -885,6 +953,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="C1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel4">
           <Properties>
@@ -945,6 +1016,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="M1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marcarEspacio"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>

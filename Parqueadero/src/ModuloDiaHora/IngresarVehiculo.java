@@ -732,7 +732,6 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         JButton boton = (JButton) evt.getSource();
         etqEspacio.setText(String.valueOf(boton.getText()));
         etqEstado.setText("Ocupado");
-
     }//GEN-LAST:event_marcarEspacio
     
     

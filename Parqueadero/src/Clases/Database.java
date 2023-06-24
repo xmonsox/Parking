@@ -2,6 +2,13 @@ package Clases;
 
 import com.mysql.cj.protocol.Resultset;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
 
 public class Database {
     
@@ -58,8 +65,10 @@ public class Database {
         String fecha_inicio = membresia.getFecha_inicio();
         String fecha_vencimiento = membresia.getFecha_vencimiento();
         String total = membresia.getTotal();
+        String nombre_espacio = membresia.getNombre_espacio();
+        String estado = "activo";
         
-        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento, total ) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"','"+total+"')";    
+        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento, total , nombre_espacio, estado) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"','"+total+"','"+nombre_espacio+"','"+estado+"')";    
         try{
             int respuesta = manipularDB.executeUpdate(consulta);
             if (respuesta>0) {
@@ -115,7 +124,7 @@ public class Database {
             ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM membresias WHERE placa='"+placa+"' ");
             registros.next();
             if (registros.getRow()==1) {
-                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"));
+                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"),registros.getString("nombre_espacio"),registros.getString("estado"));
             }
             return temp;
         }catch(SQLException e){
@@ -132,7 +141,7 @@ public class Database {
             if (registros.getRow()==1) {
                 int indice = 0;
                 do{
-                    Membresias temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"),registros.getString("tipo_vehiculo"),registros.getString("tipo_membresia"),registros.getString("placa"),registros.getString("fecha_inicio"),registros.getString("fecha_vencimiento"),registros.getString("total") );
+                    Membresias temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"),registros.getString("nombre_espacio"),registros.getString("estado"));
                     listaMembresias[indice] = temp;
                     indice++;
                 }while(registros.next());
@@ -181,6 +190,106 @@ public class Database {
         
         return espacio;
     }
+    
+    
+    
+    /*public Espacios relacionEspacio(String nombre) {
+    Espacios espacio = new Espacios(nombre, "disponible");
+
+        try {
+            String query = "SELECT ingresos.*, membresias.* " +
+                           "FROM ingresos " +
+                           "INNER JOIN membresias ON ingresos.estado = membresias.estado " +
+                           "WHERE ingresos.nombre_espacio = ? AND membresias.estado = 'activo'";
+
+            PreparedStatement statement = null;
+            ResultSet registros = null;
+
+            try {
+                statement = this.manipularDB.prepareStatement(query);
+                statement.setString(1, nombre);
+                registros = statement.executeQuery();
+
+                if (registros.next()) {
+                    espacio.setEstado("ocupado");
+                }
+
+                return espacio;
+            } catch (SQLException e) {
+                System.out.println("Error en SELECT: " + e.getMessage());
+            } finally {
+                if (registros != null) {
+                    registros.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en SELECT: " + e.getMessage());
+        }
+
+        return espacio;
+    }*/
+    
+   
+
+
+
+public Espacios relacionEspacio(String nombre) {
+    Espacios espacio = new Espacios(nombre, "disponible");
+    
+    Connection conn = null;
+    PreparedStatement statement = null;
+    ResultSet registros = null;
+
+    try {
+        String url = "jdbc:mysql://localhost:3306/parqueadero";
+        String usuario = "root";
+        String contraseña = "";
+        
+        conn = DriverManager.getConnection(url, usuario, contraseña);
+
+        String query = "SELECT ingresos.*, membresias.* " +
+                       "FROM ingresos " +
+                       "INNER JOIN membresias ON ingresos.estado = membresias.estado " +
+                       "WHERE ingresos.nombre_espacio = ? AND membresias.estado = 'activo'";
+
+        statement = conn.prepareStatement(query);
+        statement.setString(1, nombre);
+        registros = statement.executeQuery();
+
+        if (registros.next()) {
+            espacio.setEstado("ocupado");
+        }
+
+        return espacio;
+    } catch (SQLException e) {
+        System.out.println("Error en SELECT: " + e.getMessage());
+    } finally {
+        try {
+            if (registros != null) {
+                registros.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar conexión: " + e.getMessage());
+        }
+    }
+
+    return espacio;
+}
+
+
+
+    
+    
+    
     
     
     
