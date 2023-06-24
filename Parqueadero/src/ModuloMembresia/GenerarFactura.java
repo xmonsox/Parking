@@ -1,7 +1,32 @@
 
 package ModuloMembresia;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import net.sourceforge.jbarcodebean.JBarcodeBean;
+import net.sourceforge.jbarcodebean.model.Code128;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.IOException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 import Clases.Membresias;
+import ModuloDiaHora.ListarDetallesVehiculo;
 import Principal.Menu;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -10,7 +35,8 @@ import javax.swing.JTextField;
 public class GenerarFactura extends javax.swing.JFrame {
 
     Menu ventanaMenu;
-    
+    int i = 0;
+    int b = 1;
     public GenerarFactura(Menu ventanaMenu) {
         this.ventanaMenu = ventanaMenu;
         initComponents();
@@ -56,14 +82,19 @@ public class GenerarFactura extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
-        EtqTelefono.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        campoPlaca.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        EtqTelefono.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono.setText("Tipo Vehiculo:");
 
-        EtqTelefono2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono2.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono2.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono2.setText("Placa:");
 
+        campoTipoVehiculo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        campoTotalPagar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoTotalPagar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoTotalPagarKeyReleased(evt);
@@ -74,8 +105,13 @@ public class GenerarFactura extends javax.swing.JFrame {
         btnImprimir.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         btnImprimir.setForeground(new java.awt.Color(0, 0, 0));
         btnImprimir.setText("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
-        EtqTelefono3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono3.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono3.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono3.setText("Fecha Inicio:");
 
@@ -88,6 +124,8 @@ public class GenerarFactura extends javax.swing.JFrame {
                 btnAtrasActionPerformed(evt);
             }
         });
+
+        campoTipoMembresia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -107,18 +145,23 @@ public class GenerarFactura extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
         );
 
-        EtqTelefono4.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono4.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono4.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono4.setText("Fecha Vencimiento:");
 
-        EtqNombre.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        campoFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        EtqNombre.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
         EtqNombre.setForeground(new java.awt.Color(0, 0, 0));
         EtqNombre.setText("Placa:");
 
-        EtqTelefono5.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono5.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono5.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono5.setText("Total a pagar:");
 
+        campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+
+        campoFechaVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoFechaVencimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoFechaVencimientoActionPerformed(evt);
@@ -130,31 +173,38 @@ public class GenerarFactura extends javax.swing.JFrame {
             }
         });
 
-        EtqCedula.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqCedula.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqCedula.setForeground(new java.awt.Color(0, 0, 0));
         EtqCedula.setText("Telefono:");
 
-        EtqTelefono1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono1.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono1.setText("Tipo Membresia:");
 
-        EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono6.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono6.setText("Con cuanto pagó:");
 
-        EtqTelefono7.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        campoDevuelta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        EtqTelefono7.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono7.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono7.setText("Devuelta:");
 
+        campoCuantoPago.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoCuantoPago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoCuantoPagoKeyReleased(evt);
             }
         });
 
-        EtqNombre1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqNombre1.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqNombre1.setForeground(new java.awt.Color(0, 0, 0));
         EtqNombre1.setText("Propietario:");
+
+        campoPropietario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         btnBuscar.setBackground(new java.awt.Color(255, 255, 102));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -176,9 +226,9 @@ public class GenerarFactura extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(124, 124, 124)
                 .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addGap(217, 217, 217))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -188,11 +238,13 @@ public class GenerarFactura extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
                                 .addComponent(EtqNombre)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(119, 119, 119))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(EtqTelefono2)
@@ -205,36 +257,38 @@ public class GenerarFactura extends javax.swing.JFrame {
                                     .addComponent(EtqTelefono6)
                                     .addComponent(EtqTelefono7)
                                     .addComponent(EtqNombre1))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(campoTelefono)
-                                            .addComponent(campoTipoVehiculo)
-                                            .addComponent(campoPlaca, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(campoTipoMembresia, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(campoFechaInicio, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(campoFechaVencimiento)
-                                            .addComponent(campoTotalPagar)
-                                            .addComponent(campoDevuelta)
-                                            .addComponent(campoCuantoPago)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(campoCuantoPago, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                                    .addComponent(campoTotalPagar, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoPlaca, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTipoMembresia, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTipoVehiculo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoPropietario, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(campoDevuelta))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtqNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(EtqNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,35 +296,35 @@ public class GenerarFactura extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTipoMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoCuantoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqTelefono7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoDevuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -285,7 +339,9 @@ public class GenerarFactura extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,6 +428,65 @@ public class GenerarFactura extends javax.swing.JFrame {
         int devuelta = Integer.parseInt(pago)-Integer.parseInt(total);
         campoDevuelta.setText(String.valueOf(devuelta));
     }//GEN-LAST:event_campoCuantoPagoKeyReleased
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        String tipo_membresia = campoTipoMembresia.getText();
+        String tipo_vehi = campoTipoVehiculo.getText();
+        String placa = campoPlaca.getText();
+        String fecha_llegada = campoFechaInicio.getText();
+        String fecha_salida = campoFechaVencimiento.getText();
+        String total = campoTotalPagar.getText();
+        String pagar = campoCuantoPago.getText();
+        String devuelta = campoDevuelta.getText();
+
+        // Generar código de barras para la placa del vehículo
+        JBarcodeBean barcodeBean = new JBarcodeBean();
+        barcodeBean.setCodeType(new Code128());
+        barcodeBean.setCode(placa);
+        
+        // Crear el archivo PDF de la factura
+        Document document = new Document();
+        try {
+            // Especifica la ruta y el nombre del archivo PDF
+            String fileName = "FacturasM/factura" + i + ".pdf";
+            PdfWriter.getInstance(document, new FileOutputStream(fileName));
+            i++;
+            
+            document.open();
+
+            // Agrega los detalles de la factura al documento PDF
+            document.add(new Paragraph("ExoticParking"));
+            document.add(new Paragraph("Factura del Vehículo"));
+            document.add(new Paragraph("NIT 10023424335"));
+            document.add(new Paragraph("Juan David Monsalve"));
+            document.add(new Paragraph("-----------------------------------"));
+            document.add(new Paragraph("Tipo de pago: " + tipo_membresia));
+            document.add(new Paragraph("Tipo de vehículo: " + tipo_vehi));
+            document.add(new Paragraph("Placa: " + placa));
+            document.add(new Paragraph("Fecha de llegada: " + fecha_llegada));
+            document.add(new Paragraph("Fecha de salida: " + fecha_salida));
+            document.add(new Paragraph("Total a pagar: " + total));
+            document.add(new Paragraph("Monto pagado: " + pagar));
+            document.add(new Paragraph("Devuelta: " + devuelta));
+
+            // Generar el código de barras como una imagen y agregarlo al documento PDF
+            BufferedImage barcodeImage = barcodeBean.draw(new BufferedImage(300, 100, BufferedImage.TYPE_INT_RGB));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(barcodeImage, "png", baos);
+            Image barcodePdfImage = Image.getInstance(baos.toByteArray());
+            document.add(barcodePdfImage);
+            
+            document.close();
+
+            System.out.println("Factura generada exitosamente como 'factura.pdf'.");
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(ListarDetallesVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_btnImprimirActionPerformed
     
     public void deshabilitarCampo(JTextField campo){
         JTextField referencia = new JTextField();
