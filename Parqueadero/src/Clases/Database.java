@@ -41,7 +41,7 @@ public class Database {
         String nombre_espacio = vehiculo.getNombre_espacio();
         String estado = "activo";
         
-        String consulta = "INSERT INTO ingresos(placa, tipo_vehiculo, tipo_pago, fecha_ingreso, nombre_espacio, estado) VALUES ('"+placa+"','"+tipo_vehiculo+"','"+tipo_pago+"','"+fecha+"','"+nombre_espacio+"','"+estado+"')";    
+        String consulta = "INSERT INTO ingresos(placa, tipo_vehiculo, tipo_pago, fecha_ingreso) VALUES ('"+placa+"','"+tipo_vehiculo+"','"+tipo_pago+"','"+fecha+"','"+nombre_espacio+"','"+estado+"')";    
         try{
             int respuesta = manipularDB.executeUpdate(consulta);
             if (respuesta>0) {
@@ -65,10 +65,9 @@ public class Database {
         String fecha_inicio = membresia.getFecha_inicio();
         String fecha_vencimiento = membresia.getFecha_vencimiento();
         String total = membresia.getTotal();
-        String nombre_espacio = membresia.getNombre_espacio();
-        String estado = "activo";
         
-        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento, total , nombre_espacio, estado) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"','"+total+"','"+nombre_espacio+"','"+estado+"')";    
+        
+        String consulta = "INSERT INTO membresias(propietario, telefono, tipo_vehiculo, tipo_membresia, placa, fecha_inicio, fecha_vencimiento, total) VALUES ('"+propietario+"','"+telefono+"', '"+tipo_vehiculo+"', '"+tipo_membresia+"','"+placa+"','"+fecha_inicio+"','"+fecha_vencimiento+"','"+total+"')";    
         try{
             int respuesta = manipularDB.executeUpdate(consulta);
             if (respuesta>0) {
@@ -124,7 +123,7 @@ public class Database {
             ResultSet registros = this.manipularDB.executeQuery("SELECT * FROM membresias WHERE placa='"+placa+"' ");
             registros.next();
             if (registros.getRow()==1) {
-                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"),registros.getString("nombre_espacio"),registros.getString("estado"));
+                temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"));
             }
             return temp;
         }catch(SQLException e){
@@ -141,7 +140,7 @@ public class Database {
             if (registros.getRow()==1) {
                 int indice = 0;
                 do{
-                    Membresias temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"),registros.getString("nombre_espacio"),registros.getString("estado"));
+                    Membresias temp = new Membresias( registros.getString("propietario"),registros.getString("telefono"), registros.getString("tipo_vehiculo"), registros.getString("tipo_membresia"), registros.getString("placa"), registros.getString("fecha_inicio"), registros.getString("fecha_vencimiento"),registros.getString("total"));
                     listaMembresias[indice] = temp;
                     indice++;
                 }while(registros.next());

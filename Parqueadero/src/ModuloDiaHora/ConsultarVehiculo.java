@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class ConsultarVehiculo extends javax.swing.JFrame {
     
@@ -36,10 +37,11 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        contenVehiculos = new javax.swing.JTextArea();
         btnAtras = new javax.swing.JButton();
         btnBuscarPorPlaca = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,11 +51,6 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Consultar Vehiculo");
-
-        contenVehiculos.setEditable(false);
-        contenVehiculos.setColumns(20);
-        contenVehiculos.setRows(5);
-        jScrollPane1.setViewportView(contenVehiculos);
 
         btnAtras.setBackground(new java.awt.Color(0, 0, 0));
         btnAtras.setForeground(new java.awt.Color(255, 255, 255));
@@ -74,39 +71,62 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
             }
         });
 
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Placa", "Tipo Vehiculo", "Tipo Pago", "Fecha Ingreso", "Espacio", "Estado"
+            }
+        ));
+        jScrollPane2.setViewportView(tabla);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 847, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1106, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnBuscarPorPlaca)
-                                .addGap(306, 306, 306))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))))
+                        .addComponent(btnBuscarPorPlaca)
+                        .addGap(423, 423, 423))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscarPorPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,45 +155,37 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
     
     public void initAlternComponents(){
         setLocationRelativeTo(null);
-        contenVehiculos.setLayout( new BoxLayout(contenVehiculos, BoxLayout.Y_AXIS) );
-        contenVehiculos.setBackground(Color.WHITE);
         imprimirVehiculos();
     }
     
     public void imprimirVehiculos(){
        
         Vehiculos listaVehiculos [] = ( this.ventanaMenu.database.listaVehiculos()); 
-        //btnDetalles = new JButton [listaVehiculos.length];
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("Placa");
+        modelo.addColumn("Tipo Vehiculo");
+        modelo.addColumn("Tipo Pago");
+        modelo.addColumn("Fecha Ingreso");
+        modelo.addColumn("Espacio");
+        modelo.addColumn("Estado");
+        tabla.setModel(modelo);
         
         if (listaVehiculos!=null) {
             for(int i = 0; i < listaVehiculos.length; i++) {
                 Vehiculos vehiculo = listaVehiculos[i];
-                
                 if(vehiculo != null) {
-                    etqTemporal = new JLabel("Placa: " + vehiculo.getPlaca() + " - Tipo Vehiculo: " + vehiculo.getTipo_vehiculo() + " - Tipo Pago: " + vehiculo.getTipo_pago() + "- Fecha: " + vehiculo.getFecha() + " - ");
-                    //btnDetalles[i] = new JButton("Salida");
-
-                    /*ActionListener evento_01 = new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            Database instancia = new Database();
-                            FacturaVehiculo arreglo_vehiculos [] = instancia.buscarVehiculoFactura(String.valueOf(vehiculo.getPlaca()));
-                            ListarDetallesVehiculo ventana = new ListarDetallesVehiculo(vehiculo.getPlaca(), vehiculo.getTipo_vehiculo(), vehiculo.getTipo_pago(), vehiculo.getFecha(), arreglo_vehiculos);
-                            
-                            ventana.setVisible(true);
-                        }
-                    };*/
-                    //btnDetalles[i].addActionListener(evento_01);
-
-                    etqTemporal.setFont(new Font("Arial", Font.PLAIN, 12));
-                    etqTemporal.setBorder(new EmptyBorder(2, 10, 2, 10));
-                    contenVehiculos.add(etqTemporal);
-                    //contenVehiculos.add(btnDetalles[i]);
+                    String placa = vehiculo.getPlaca();
+                    String tipo_vehiculo = vehiculo.getTipo_vehiculo();
+                    String tipo_pago = vehiculo.getTipo_pago();
+                    String fecha_ingreso = vehiculo.getFecha();
+                    String espacio = vehiculo.getNombre_espacio();
+                    String estado = vehiculo.getEstado();
+                    
+                    modelo.addRow(new Object[]{placa,tipo_vehiculo,tipo_pago,fecha_ingreso,espacio,estado});
                 } else {
                     break;
                 }
             }
-
             revalidate();
         }
     }
@@ -183,9 +195,10 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBuscarPorPlaca;
-    private javax.swing.JTextArea contenVehiculos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

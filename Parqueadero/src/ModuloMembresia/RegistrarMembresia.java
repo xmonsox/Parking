@@ -376,13 +376,11 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         String fecha_inicio = campoFechaInicio.getText();
         String fecha_vencimiento = campoFechaVencimiento.getText();
         String total = campoTotal.getText();
-        String nombre_espacio = etqEspacio.getText();
-        String estado = etqEstado.getText();
         
         if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !total.equals("")){
             boolean repetido = false;
             if (!repetido) {
-                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total,nombre_espacio,estado);
+                Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total);
                 this.ventanaMenu.database.insertarMembresia(temporal); 
                 this.ventanaMenu.setVisible(true);
                 System.out.println("Membresia Ingresado correctamente");

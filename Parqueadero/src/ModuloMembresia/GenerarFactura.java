@@ -358,6 +358,7 @@ public class GenerarFactura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        this.ventanaMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 

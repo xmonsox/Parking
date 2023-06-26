@@ -9,6 +9,7 @@ public class Vehiculos {
     String nombre_espacio;
     String estado;
     
+    
 
     public Vehiculos(String placa, String tipo_vehiculo, String tipo_pago, String fecha, String nombre_espacio, String estado) {
         this.placa = placa;
