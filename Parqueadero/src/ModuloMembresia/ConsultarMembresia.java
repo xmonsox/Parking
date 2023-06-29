@@ -65,7 +65,9 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +180,8 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         etqEncontrado.setText("Vehiculo Encontrado:");
 
         btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -349,6 +352,7 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         String placa = campoPlacaBuscar.getText();
         Membresias temporal = ( this.ventanaMenu.database.buscarMembresia(placa));
         
+        String telefono = String.valueOf(temporal.getTelefono());
        
         if (temporal != null) {
             etqEncontrado.setText("Membresia encontrada:");
@@ -361,13 +365,13 @@ public class ConsultarMembresia extends javax.swing.JFrame {
             deshabilitarCampo(campoFechaVencimiento);
             deshabilitarCampo(campoPago);
             campoPropietario.setText(temporal.getPropietario());
-            campoTelefono.setText(temporal.getTelefono());
+            campoTelefono.setText(telefono);
             campoTipoMembresia.setText(temporal.getTipo_membresia());
             campoTipoVehiculo.setText(temporal.getTipo_vehiculo());
             campoPlaca.setText(temporal.getPlaca());
             campoFechaInicio.setText(temporal.getFecha_inicio());
             campoFechaVencimiento.setText(temporal.getFecha_vencimiento());
-            campoPago.setText(temporal.getTotal());
+            campoPago.setText(String.valueOf(temporal.getTotal()));
         }else{
             System.out.println("NO SE ENCONTRO LA PLACA");
             etqEncontrado.setText("Membresia NO encontrada:");

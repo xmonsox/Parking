@@ -1,5 +1,6 @@
 
 package ModuloMembresia;
+import Clases.FacturaMembresias;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -26,7 +27,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 import Clases.Membresias;
-import ModuloDiaHora.ListarDetallesVehiculo;
+import ModuloDiaHora.SalidaVehiculo;
 import Principal.Menu;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -377,7 +378,7 @@ public class GenerarFactura extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String placa = campoPlacaBuscar.getText();
         Membresias temporal = ( this.ventanaMenu.database.buscarMembresia(placa));
-        
+        String telefono = String.valueOf(temporal.getTelefono());
        
         if (temporal != null) {
             deshabilitarCampo(campoPropietario);
@@ -391,13 +392,13 @@ public class GenerarFactura extends javax.swing.JFrame {
             deshabilitarCampo(campoDevuelta);
             
             campoPropietario.setText(temporal.getPropietario());
-            campoTelefono.setText(temporal.getTelefono());
+            campoTelefono.setText(telefono);
             campoTipoMembresia.setText(temporal.getTipo_membresia());
             campoTipoVehiculo.setText(temporal.getTipo_vehiculo());
             campoPlaca.setText(temporal.getPlaca());
             campoFechaInicio.setText(temporal.getFecha_inicio());
             campoFechaVencimiento.setText(temporal.getFecha_vencimiento());
-            campoTotalPagar.setText(temporal.getTotal());
+            campoTotalPagar.setText(String.valueOf(temporal.getTotal()));
         }else{
             System.out.println("NO SE ENCONTRO LA PLACA");
             campoPropietario.setText("");
@@ -437,15 +438,23 @@ public class GenerarFactura extends javax.swing.JFrame {
     }//GEN-LAST:event_campoCuantoPagoKeyReleased
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        String propietario = campoPropietario.getText();
+        String telefono = campoTelefono.getText();
         String tipo_membresia = campoTipoMembresia.getText();
         String tipo_vehi = campoTipoVehiculo.getText();
         String placa = campoPlaca.getText();
-        String fecha_llegada = campoFechaInicio.getText();
-        String fecha_salida = campoFechaVencimiento.getText();
-        String total = campoTotalPagar.getText();
-        String pagar = campoCuantoPago.getText();
-        String devuelta = campoDevuelta.getText();
-
+        String fecha_inicio = campoFechaInicio.getText();
+        String fecha_vencimiento = campoFechaVencimiento.getText();
+        String texto_total = campoTotalPagar.getText();
+        String texto_recibe = campoCuantoPago.getText();
+        String texto_devuelta = campoDevuelta.getText();
+        
+        
+        int total = Integer.parseInt(texto_total);
+        int recibe = Integer.parseInt(texto_recibe);
+        int devuelta = Integer.parseInt(texto_devuelta);
+        
+        
         // Generar código de barras para la placa del vehículo
         JBarcodeBean barcodeBean = new JBarcodeBean();
         barcodeBean.setCodeType(new Code128());
@@ -462,19 +471,19 @@ public class GenerarFactura extends javax.swing.JFrame {
             document.open();
 
             // Agrega los detalles de la factura al documento PDF
-            document.add(new Paragraph("ExoticParking"));
+            document.add(new Paragraph("ParkingCentro"));
             document.add(new Paragraph("Factura del Vehículo"));
             document.add(new Paragraph("NIT 10023424335"));
-            document.add(new Paragraph("Juan David Monsalve"));
+            document.add(new Paragraph("ExoticSoft"));
             document.add(new Paragraph("-----------------------------------"));
             document.add(new Paragraph("Tipo de pago: " + tipo_membresia));
             document.add(new Paragraph("Tipo de vehículo: " + tipo_vehi));
             document.add(new Paragraph("Placa: " + placa));
-            document.add(new Paragraph("Fecha de llegada: " + fecha_llegada));
-            document.add(new Paragraph("Fecha de salida: " + fecha_salida));
-            document.add(new Paragraph("Total a pagar: " + total));
-            document.add(new Paragraph("Monto pagado: " + pagar));
-            document.add(new Paragraph("Devuelta: " + devuelta));
+            document.add(new Paragraph("Fecha de llegada: " + fecha_inicio));
+            document.add(new Paragraph("Fecha de salida: " + fecha_vencimiento));
+            document.add(new Paragraph("Total a pagar: " + texto_total));
+            document.add(new Paragraph("Monto pagado: " + texto_recibe));
+            document.add(new Paragraph("Devuelta: " + texto_devuelta));
 
             // Generar el código de barras como una imagen y agregarlo al documento PDF
             BufferedImage barcodeImage = barcodeBean.draw(new BufferedImage(300, 100, BufferedImage.TYPE_INT_RGB));
@@ -491,7 +500,22 @@ public class GenerarFactura extends javax.swing.JFrame {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException ex) {
-            Logger.getLogger(ListarDetallesVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SalidaVehiculo.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+        if (!propietario.equals("") && !telefono.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !texto_total.equals("") && !texto_recibe.equals("") && !texto_devuelta.equals("")) {
+            boolean repetido = false;
+            if (!repetido) {
+                FacturaMembresias temporal = new FacturaMembresias(propietario,telefono,tipo_vehi,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total,recibe,devuelta);
+                this.ventanaMenu.database.insertarSalidaMembresias(temporal); 
+                this.ventanaMenu.setVisible(true);
+                System.out.println("Factura creada correctamente");        
+                dispose();
+            }else{
+                System.out.println("ERRRRORRRRR");
+            }
+        }else{
+            System.out.println("Diligencie todos los campos");
         } 
     }//GEN-LAST:event_btnImprimirActionPerformed
     

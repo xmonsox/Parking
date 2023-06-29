@@ -20,6 +20,7 @@ public class ListaMembresias {
         this.fecha_inicio = fecha_inicio;
         this.fecha_vencimiento = fecha_vencimiento;
         this.pago = pago;
+         
     }
 
     public String getPropietario() {

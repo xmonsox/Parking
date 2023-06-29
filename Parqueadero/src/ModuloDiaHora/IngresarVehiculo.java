@@ -706,7 +706,6 @@ public class IngresarVehiculo extends javax.swing.JFrame {
                 System.out.println("Vehiculo Ingresado correctamente");
                 dispose();
             }else{
-      
                 System.out.println("ERRRRORRRRR");
             }
         }else{
@@ -739,7 +738,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
     private void marcarEspacio(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcarEspacio
         JButton boton = (JButton) evt.getSource();
         etqEspacio.setText(String.valueOf(boton.getText()));
-        etqEstado.setText("Ocupado");
+        etqEstado.setText("Disponible");
     }//GEN-LAST:event_marcarEspacio
     
     

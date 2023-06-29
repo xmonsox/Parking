@@ -25,7 +25,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
         this.setLocationRelativeTo(null);
         Fecha();
-        actualizarEstadoEspacios();
+        
         etqEstado.setText("Disponible");
     }
 
@@ -139,6 +139,11 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         campoTelefono.setBackground(new java.awt.Color(255, 255, 102));
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        campoTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTelefonoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -259,10 +264,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                                     .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel3)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(contenPrincipalLayout.createSequentialGroup()
-                        .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etqPlaca2)
                             .addComponent(etqPlaca1)
                             .addComponent(jLabel6)
@@ -280,13 +282,12 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                                 .addGap(210, 210, 210)
                                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(contenPrincipalLayout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
-                        .addComponent(btnAceptar)
+                                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(contenPrincipalLayout.createSequentialGroup()
+                                .addGap(159, 159, 159)
+                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(132, 132, 132)
+                                .addComponent(btnAceptar)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         contenPrincipalLayout.setVerticalGroup(
@@ -375,9 +376,11 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         String placa = campoPlaca.getText();
         String fecha_inicio = campoFechaInicio.getText();
         String fecha_vencimiento = campoFechaVencimiento.getText();
-        String total = campoTotal.getText();
+        String texto_total = campoTotal.getText();
+        int total = Integer.parseInt(texto_total);
         
-        if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !total.equals("")){
+        
+        if (!propietario.equals("") && !telefono.equals("") && !tipo_vehiculo.equals("") && !tipo_membresia.equals("") && !placa.equals("") && !fecha_inicio.equals("") && !fecha_vencimiento.equals("") && !texto_total.equals("")){
             boolean repetido = false;
             if (!repetido) {
                 Membresias temporal = new Membresias(propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total);
@@ -386,7 +389,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 System.out.println("Membresia Ingresado correctamente");
                 dispose();
             }else{
-      
                 System.out.println("ERRRRORRRRR");
             }
         }else{
@@ -447,10 +449,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         
     }//GEN-LAST:event_boxTipoMembresiaMouseMoved
     
-    public void actualizarEstadoEspacios(){
-        
-    
-    }
     
     private void boxTipoMembresiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseExited
         
@@ -479,6 +477,10 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private void boxTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxTipoVehiculoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoVehiculoActionPerformed
+
+    private void campoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTelefonoActionPerformed
 
     
 

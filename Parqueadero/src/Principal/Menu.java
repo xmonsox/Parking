@@ -3,7 +3,7 @@ package Principal;
 import Clases.Database;
 import ModuloDiaHora.ConsultarVehiculo;
 import ModuloDiaHora.IngresarVehiculo;
-import ModuloDiaHora.ListarDetallesVehiculo;
+import ModuloDiaHora.SalidaVehiculo;
 import ModuloMembresia.ConsultarMembresia;
 import ModuloMembresia.GenerarFactura;
 import ModuloMembresia.ListaGeneral;
@@ -557,7 +557,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarVehiculo2ActionPerformed
 
     private void btnEliminarVehiculo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVehiculo3ActionPerformed
-        ListarDetallesVehiculo ventana = new ListarDetallesVehiculo(this);
+        SalidaVehiculo ventana = new SalidaVehiculo(this);
         ventana.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnEliminarVehiculo3ActionPerformed

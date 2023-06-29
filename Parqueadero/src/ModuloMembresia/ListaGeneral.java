@@ -4,7 +4,7 @@ import Clases.Database;
 import Clases.FacturaVehiculo;
 import Clases.Membresias;
 import Clases.Vehiculos;
-import ModuloDiaHora.ListarDetallesVehiculo;
+import ModuloDiaHora.SalidaVehiculo;
 import Principal.Menu;
 import java.awt.Color;
 import java.awt.Font;
@@ -150,6 +150,7 @@ public class ListaGeneral extends javax.swing.JFrame {
         modelo.addColumn("Fecha Vencimiento");
         modelo.addColumn("Total");
         tabla.setModel(modelo);
+        
         if (listaMembresias!=null) {
             for(int i = 0; i < listaMembresias.length; i++) {
                 Membresias membresia = listaMembresias[i];
@@ -161,7 +162,7 @@ public class ListaGeneral extends javax.swing.JFrame {
                     String placa = membresia.getPlaca();
                     String fecha_inicio = membresia.getFecha_inicio();
                     String fecha_vencimiento = membresia.getFecha_vencimiento();
-                    String total = membresia.getTotal();
+                    String total = String.valueOf(membresia.getTotal());
                     
                     modelo.addRow(new Object[]{propietario,telefono,tipo_vehiculo,tipo_membresia,placa,fecha_inicio,fecha_vencimiento,total});
                 } else {

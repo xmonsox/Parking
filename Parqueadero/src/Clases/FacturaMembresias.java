@@ -1,20 +1,19 @@
-
 package Clases;
 
-
-public class Membresias {
+public class FacturaMembresias {
     
-    String propietario;
-    String telefono;
-    String tipo_vehiculo;
-    String tipo_membresia;
-    String placa;
-    String fecha_inicio;
-    String fecha_vencimiento;
-    int total;
-    
+    private String propietario;
+    private String telefono;
+    private String tipo_vehiculo;
+    private String tipo_membresia;
+    private String placa;
+    private String fecha_inicio;
+    private String fecha_vencimiento;
+    private int total;
+    private int recibe;
+    private int devuelta;
 
-    public Membresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento, int total) {
+    public FacturaMembresias(String propietario, String telefono, String tipo_vehiculo, String tipo_membresia, String placa, String fecha_inicio, String fecha_vencimiento, int total, int recibe, int devuelta) {
         this.propietario = propietario;
         this.telefono = telefono;
         this.tipo_vehiculo = tipo_vehiculo;
@@ -23,16 +22,8 @@ public class Membresias {
         this.fecha_inicio = fecha_inicio;
         this.fecha_vencimiento = fecha_vencimiento;
         this.total = total;
-       
-    }
-
-   
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
+        this.recibe = recibe;
+        this.devuelta = devuelta;
     }
 
     public String getPropietario() {
@@ -47,16 +38,16 @@ public class Membresias {
         return telefono;
     }
 
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getTipo_vehiculo() {
         return tipo_vehiculo;
     }
 
     public void setTipo_vehiculo(String tipo_vehiculo) {
         this.tipo_vehiculo = tipo_vehiculo;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getTipo_membresia() {
@@ -90,8 +81,30 @@ public class Membresias {
     public void setFecha_vencimiento(String fecha_vencimiento) {
         this.fecha_vencimiento = fecha_vencimiento;
     }
-    
-    
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getRecibe() {
+        return recibe;
+    }
+
+    public void setRecibe(int recibe) {
+        this.recibe = recibe;
+    }
+
+    public int getDevuelta() {
+        return devuelta;
+    }
+
+    public void setDevuelta(int devuelta) {
+        this.devuelta = devuelta;
+    }
     
     
 }
