@@ -82,6 +82,36 @@ public class Database {
         }
     }
     
+    public boolean insertarSalidaVehiculo(SalidaVehiculos SalidaVehiculos){
+        String tipo_vehiculo = SalidaVehiculos.getTipo_vehiculo();
+        String tipo_pago = SalidaVehiculos.getTipo_pago();
+        String placa = SalidaVehiculos.getPlaca();
+        String fecha_llegada = SalidaVehiculos.getFecha_llegada();
+        String fecha_salida = SalidaVehiculos.getFecha_salida();
+        int total = SalidaVehiculos.getTotal();
+        int recibe = SalidaVehiculos.getRecibe();
+        int devuelta = SalidaVehiculos.getDevuelta();
+        String espacio = SalidaVehiculos.getEspacio();
+        String estado = SalidaVehiculos.getEstado();
+        String duracion = SalidaVehiculos.getDuracion();
+        
+        
+        
+        String consulta = "INSERT INTO salidavehiculo(fecha_llegada, fecha_salida, tipo_vehiculo, placa, tipo_pago, total, recibe, devuelta, nombre_espacio, estado, duracion) VALUES ('"+fecha_llegada+"','"+fecha_salida+"','"+tipo_vehiculo+"','"+placa+"','"+tipo_pago+"','"+total+"','"+recibe+"','"+devuelta+"','"+espacio+"','"+estado+"','"+duracion+"')";    
+        try{
+            int respuesta = manipularDB.executeUpdate(consulta);
+            if (respuesta>0) {
+                System.out.println("REGISTRO INSERTADO CON EXITO");
+                return true;
+            }else{
+                return false;
+            }
+        }catch(SQLException e){
+            System.out.println("Error al insertar: "+e.getMessage());
+            return false;
+        }
+    }
+    
     public Vehiculos[] listaVehiculos(){
         Vehiculos [] listaVehiculos = new Vehiculos [100];
         try{
@@ -188,6 +218,24 @@ public class Database {
         }
         
         return espacio;
+    }
+    
+    public boolean ModificarEspacio(SalidaVehiculos SalidaVehiculos){
+        boolean respuesta = false;
+        String placa = SalidaVehiculos.getPlaca();
+        String estado = "inactivo";
+         
+        
+        try {
+            String consulta = "UPDATE ingresos SET estado='"+estado+"' WHERE placa='"+placa+"'";
+            int resp = manipularDB.executeUpdate(consulta);
+            if (resp>0) {
+                respuesta = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en UPDATE: "+ex.getMessage());
+        }
+        return respuesta;
     }
     
     

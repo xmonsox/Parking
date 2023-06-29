@@ -17,6 +17,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import Clases.FacturaVehiculo;
+import Clases.SalidaVehiculos;
 import Clases.Vehiculos;
 import Principal.Menu;
 import java.awt.Color;
@@ -38,6 +39,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
     FacturaVehiculo arreglo_vehiculos [];
     Date fecha_salida = new Date();
     Menu ventanaMenu;
+    long calculo_horas = 0;
     int i = 0;
     int b = 1;
     public ListarDetallesVehiculo(Menu ventanaMenu) {
@@ -78,6 +80,12 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         EtqTelefono4 = new javax.swing.JLabel();
         campoTotal = new javax.swing.JTextField();
+        EtqTelefono6 = new javax.swing.JLabel();
+        campoEspacio = new javax.swing.JTextField();
+        EtqTelefono7 = new javax.swing.JLabel();
+        campoEstado = new javax.swing.JTextField();
+        EtqTelefono8 = new javax.swing.JLabel();
+        campoDuracion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -206,38 +214,84 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
 
         campoTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono6.setForeground(new java.awt.Color(0, 0, 0));
+        EtqTelefono6.setText("Espacio:");
+
+        campoEspacio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEspacio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoEspacioActionPerformed(evt);
+            }
+        });
+        campoEspacio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoEspacioKeyReleased(evt);
+            }
+        });
+
+        EtqTelefono7.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono7.setForeground(new java.awt.Color(0, 0, 0));
+        EtqTelefono7.setText("Estado:");
+
+        campoEstado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        EtqTelefono8.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
+        EtqTelefono8.setForeground(new java.awt.Color(0, 0, 0));
+        EtqTelefono8.setText("Duracion:");
+
+        campoDuracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoDuracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoDuracionActionPerformed(evt);
+            }
+        });
+        campoDuracion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                campoDuracionKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etqEncontrado)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(EtqTelefono2)
+                                        .addGap(40, 40, 40))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(EtqTelefono4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(campoPagar)
+                                    .addComponent(campoTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(476, 476, 476))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(323, 323, 323)
-                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnImprimir))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(EtqNombre)
-                                        .addGap(9, 9, 9)
-                                        .addComponent(campoFechaLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(EtqNombre)
+                                                .addGap(9, 9, 9)
+                                                .addComponent(campoFechaLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(EtqTelefono6)
+                                                .addGap(60, 60, 60)
+                                                .addComponent(campoEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(EtqTelefono8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(33, 33, 33)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(EtqCedula)
@@ -247,29 +301,35 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(EtqTelefono3)
                                                     .addComponent(EtqTelefono1)
-                                                    .addComponent(EtqTelefono5))
+                                                    .addComponent(EtqTelefono5)
+                                                    .addComponent(EtqTelefono7))
                                                 .addGap(38, 38, 38)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                         .addComponent(campoDevuelta, javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(campoTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                        .addComponent(campoTotal, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(campoEstado, javax.swing.GroupLayout.Alignment.LEADING))))))
+                                    .addComponent(etqEncontrado)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(EtqTelefono)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(campoTipoVehi, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(EtqTelefono2)
-                                            .addGap(40, 40, 40))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(EtqTelefono4)
-                                            .addGap(71, 71, 71)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(campoPagar)
-                                        .addComponent(campoTipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(476, 476, 476))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(329, 329, 329)
+                                .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnImprimir)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -311,11 +371,21 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                     .addComponent(campoPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EtqTelefono5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoDevuelta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EtqTelefono7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EtqTelefono6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(EtqTelefono8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImprimir)
                     .addComponent(btnAtras))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -326,7 +396,9 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -364,11 +436,18 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
             deshabilitarCampo(campoFechaLlegada);
             deshabilitarCampo(campoFechaSalida);
             deshabilitarCampo(campoDevuelta);
+            deshabilitarCampo(campoEspacio);
+            deshabilitarCampo(campoEstado);
+            deshabilitarCampo(campoDuracion);
+            
+            
             
             campoTipoPago.setText(temporal.getTipo_pago());
             campoTipoVehi.setText(temporal.getTipo_vehiculo());
             campoPlaca.setText(temporal.getPlaca());
             campoFechaLlegada.setText(temporal.getFecha());
+            campoEspacio.setText(temporal.getNombre_espacio());
+            campoEstado.setText(temporal.getEstado());
             campoFechaSalida.setText(String.valueOf(fecha_salida));
             campoPagar.requestFocus();
             
@@ -389,7 +468,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                     if(diferenciaEnMinutos<60){
                         campoTotal.setText("1000");
                     }else{
-                        long calculo_horas = diferenciaEnMinutos/60;
+                        calculo_horas = diferenciaEnMinutos/60;
                         long total = calculo_horas*2000;
                         campoTotal.setText(String.valueOf(total));
                     }  
@@ -404,7 +483,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                     if(diferenciaEnMinutos<60){
                         campoTotal.setText("500");
                     }else{
-                       long calculo_horas = diferenciaEnMinutos/60;
+                        calculo_horas = diferenciaEnMinutos/60;
                         long total = calculo_horas*1000; 
                         campoTotal.setText(String.valueOf(total));
                     }
@@ -413,7 +492,7 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
                 }
             }
         
-            
+            campoDuracion.setText(String.valueOf(calculo_horas));
         }else{
             System.out.println("NO SE ENCONTRO LA PLACA");
             etqEncontrado.setText("Vehiculo NO encontrado:");
@@ -437,9 +516,16 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         String placa = campoPlaca.getText();
         String fecha_llegada = campoFechaLlegada.getText();
         String fecha_salida = campoFechaSalida.getText();
-        String total = campoTotal.getText();
-        String pagar = campoPagar.getText();
-        String devuelta = campoDevuelta.getText();
+        String texto_total = campoTotal.getText();
+        String texto_recibe = campoPagar.getText();
+        String texto_devuelta = campoDevuelta.getText();
+        String espacio = campoEspacio.getText();
+        String estado = campoEstado.getText();
+        String duracion = campoDuracion.getText();
+        
+        int total = Integer.parseInt(texto_total);
+        int recibe = Integer.parseInt(texto_recibe);
+        int devuelta = Integer.parseInt(texto_devuelta);
 
         // Generar código de barras para la placa del vehículo
         JBarcodeBean barcodeBean = new JBarcodeBean();
@@ -460,16 +546,19 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
             document.add(new Paragraph("ExoticParking"));
             document.add(new Paragraph("Factura del Vehículo"));
             document.add(new Paragraph("NIT 10023424335"));
-            document.add(new Paragraph("Juan David Monsalve"));
+            document.add(new Paragraph("ExoticSoft"));
             document.add(new Paragraph("-----------------------------------"));
             document.add(new Paragraph("Tipo de pago: " + tipo_pago));
             document.add(new Paragraph("Tipo de vehículo: " + tipo_vehi));
             document.add(new Paragraph("Placa: " + placa));
             document.add(new Paragraph("Fecha de llegada: " + fecha_llegada));
             document.add(new Paragraph("Fecha de salida: " + fecha_salida));
-            document.add(new Paragraph("Total a pagar: " + total));
-            document.add(new Paragraph("Monto pagado: " + pagar));
-            document.add(new Paragraph("Devuelta: " + devuelta));
+            document.add(new Paragraph("Espacio: " + espacio));
+            document.add(new Paragraph("Estado: " + estado));
+            document.add(new Paragraph("Duracion: " + duracion));
+            document.add(new Paragraph("Total a pagar: " + texto_total));
+            document.add(new Paragraph("Monto pagado: " + texto_recibe));
+            document.add(new Paragraph("Devuelta: " + texto_devuelta));
 
             // Generar el código de barras como una imagen y agregarlo al documento PDF
             BufferedImage barcodeImage = barcodeBean.draw(new BufferedImage(300, 100, BufferedImage.TYPE_INT_RGB));
@@ -488,12 +577,45 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(ListarDetallesVehiculo.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        
+        if (!tipo_pago.equals("") && !tipo_vehi.equals("") && !placa.equals("") && !fecha_llegada.equals("") && !fecha_salida.equals("") && !texto_total.equals("") && !texto_recibe.equals("") && !texto_devuelta.equals("")){
+            boolean repetido = false;
+            if (!repetido) {
+                SalidaVehiculos temporal = new SalidaVehiculos(tipo_vehi,tipo_pago,fecha_llegada,fecha_salida,placa,total,recibe,devuelta,espacio,estado,duracion);
+                this.ventanaMenu.database.insertarSalidaVehiculo(temporal); 
+                this.ventanaMenu.setVisible(true);
+                System.out.println("Sale correctamente");
+                boolean proceso = (this.ventanaMenu.database.ModificarEspacio(temporal));         
+                dispose();
+            }else{
+                System.out.println("ERRRRORRRRR");
+            }
+        }else{
+            System.out.println("Diligencie todos los campos");
+        } 
+        
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         this.ventanaMenu.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void campoEspacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEspacioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoEspacioActionPerformed
+
+    private void campoEspacioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoEspacioKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoEspacioKeyReleased
+
+    private void campoDuracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDuracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDuracionActionPerformed
+
+    private void campoDuracionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDuracionKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoDuracionKeyReleased
          
     public void camposDeshabilitados(){
         deshabilitarCampo(campoFechaLlegada);
@@ -532,10 +654,16 @@ public class ListarDetallesVehiculo extends javax.swing.JFrame {
     private javax.swing.JLabel EtqTelefono3;
     private javax.swing.JLabel EtqTelefono4;
     private javax.swing.JLabel EtqTelefono5;
+    private javax.swing.JLabel EtqTelefono6;
+    private javax.swing.JLabel EtqTelefono7;
+    private javax.swing.JLabel EtqTelefono8;
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JTextField campoDevuelta;
+    private javax.swing.JTextField campoDuracion;
+    private javax.swing.JTextField campoEspacio;
+    private javax.swing.JTextField campoEstado;
     private javax.swing.JTextField campoFechaLlegada;
     private javax.swing.JTextField campoFechaSalida;
     private javax.swing.JTextField campoPagar;
