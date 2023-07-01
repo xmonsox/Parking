@@ -83,9 +83,10 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
+        campoPlaca.setBackground(new java.awt.Color(255, 255, 153));
         campoPlaca.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         EtqTelefono.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
@@ -96,8 +97,10 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqTelefono2.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono2.setText("Placa:");
 
+        campoTipoVehiculo.setBackground(new java.awt.Color(255, 255, 153));
         campoTipoVehiculo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
+        campoTotalPagar.setBackground(new java.awt.Color(255, 255, 153));
         campoTotalPagar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoTotalPagar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -131,6 +134,7 @@ public class GenerarFactura extends javax.swing.JFrame {
             }
         });
 
+        campoTipoMembresia.setBackground(new java.awt.Color(255, 255, 153));
         campoTipoMembresia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
@@ -156,6 +160,7 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqTelefono4.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono4.setText("Fecha Vencimiento:");
 
+        campoFechaInicio.setBackground(new java.awt.Color(255, 255, 153));
         campoFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         EtqNombre.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
@@ -166,13 +171,17 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqTelefono5.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono5.setText("Total a pagar:");
 
-        campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        campoPlacaBuscar.setBackground(new java.awt.Color(255, 255, 153));
+        campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
+        campoPlacaBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlacaBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoPlacaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoPlacaBuscarKeyTyped(evt);
             }
         });
 
+        campoFechaVencimiento.setBackground(new java.awt.Color(255, 255, 153));
         campoFechaVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoFechaVencimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,18 +202,21 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqTelefono1.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono1.setText("Tipo Membresia:");
 
+        campoTelefono.setBackground(new java.awt.Color(255, 255, 153));
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono6.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono6.setText("Con cuanto pagó:");
 
+        campoDevuelta.setBackground(new java.awt.Color(255, 255, 153));
         campoDevuelta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         EtqTelefono7.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono7.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono7.setText("Devuelta:");
 
+        campoCuantoPago.setBackground(new java.awt.Color(255, 255, 153));
         campoCuantoPago.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoCuantoPago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -216,11 +228,12 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqNombre1.setForeground(new java.awt.Color(0, 0, 0));
         EtqNombre1.setText("Propietario:");
 
+        campoPropietario.setBackground(new java.awt.Color(255, 255, 153));
         campoPropietario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
-        btnBuscar.setBackground(new java.awt.Color(255, 255, 102));
+        btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,8 +252,8 @@ public class GenerarFactura extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(124, 124, 124)
-                .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(217, 217, 217))
+                .addComponent(btnImprimir)
+                .addGap(210, 210, 210))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()

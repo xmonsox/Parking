@@ -181,7 +181,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         });
         boxTipoMembresia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                boxTipoMembresiaMouseClicked(evt);
+                none(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 boxTipoMembresiaMouseEntered(evt);
@@ -233,7 +233,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         jLabel9.setText("Total  a pagar:");
 
         campoTotal.setBackground(new java.awt.Color(255, 255, 102));
-        campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         campoTotal.setForeground(new java.awt.Color(0, 0, 0));
 
         etqPlaca1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
@@ -274,9 +274,9 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                             .addGroup(contenPrincipalLayout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                                    .addComponent(campoFechaVencimiento)))
                             .addComponent(jLabel3)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,7 +303,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(132, 132, 132)
                                 .addComponent(btnAceptar)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(71, Short.MAX_VALUE))))
         );
         contenPrincipalLayout.setVerticalGroup(
             contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,12 +317,12 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,9 +414,9 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void boxTipoMembresiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseClicked
+    private void none(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_none
         
-    }//GEN-LAST:event_boxTipoMembresiaMouseClicked
+    }//GEN-LAST:event_none
 
     private void boxTipoMembresiaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseReleased
         

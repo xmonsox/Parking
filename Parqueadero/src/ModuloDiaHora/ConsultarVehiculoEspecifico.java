@@ -52,6 +52,7 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
         campoPlacaBuscar.setBackground(new java.awt.Color(255, 255, 102));
         campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         campoPlacaBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlacaBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         campoPlacaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoPlacaBuscarKeyTyped(evt);
