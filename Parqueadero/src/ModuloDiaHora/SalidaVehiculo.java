@@ -48,7 +48,6 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
         this.setLocationRelativeTo(null);
         campoPlacaBuscar.requestFocus();
-        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -129,6 +128,11 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         campoPlacaBuscar.setForeground(new java.awt.Color(0, 0, 0));
         campoPlacaBuscar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoPlacaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPlacaBuscarKeyTyped(evt);
+            }
+        });
 
         campoFechaSalida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -406,22 +410,27 @@ public class SalidaVehiculo extends javax.swing.JFrame {
     private void campoPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoPagarActionPerformed
-
+    
     private void campoPagarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPagarKeyReleased
-        //Calculo de cuanto va a pagar y devuelta
+        // Obtener el texto de los campos de entrada
         String pago = campoPagar.getText();
         String total = campoTotal.getText();
 
-        if(Integer.parseInt(pago)<Integer.parseInt(total)){
-            System.out.println("ERROR, PAGO INSUFICENTE");
-        }else{
-            System.out.println("PAGO EXITOSO");
+        if (pago.isEmpty()) { // Verificar si el campo de pago está vacío
+            campoDevuelta.setText(""); // Establecer el valor del campo de devuelta como vacío
+        } else {
+            if (Integer.parseInt(pago) < Integer.parseInt(total)) {
+                System.out.println("ERROR, PAGO INSUFICIENTE");
+            } else {
+                System.out.println("PAGO EXITOSO");
+            }
+
+            int devuelta = Integer.parseInt(pago) - Integer.parseInt(total);
+            campoDevuelta.setText(String.valueOf(devuelta));
         }
-
-        int devuelta = Integer.parseInt(pago)-Integer.parseInt(total);
-        campoDevuelta.setText(String.valueOf(devuelta));
+    
     }//GEN-LAST:event_campoPagarKeyReleased
-
+    
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         String placa = campoPlacaBuscar.getText();
         Vehiculos temporal = ( this.ventanaMenu.database.buscarVehiculo(placa));
@@ -438,6 +447,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
             deshabilitarCampo(campoEspacio);
             deshabilitarCampo(campoEstado);
             deshabilitarCampo(campoDuracion);
+            habilitarCampo(campoPagar);
             
             
             
@@ -447,7 +457,10 @@ public class SalidaVehiculo extends javax.swing.JFrame {
             campoFechaLlegada.setText(temporal.getFecha());
             campoEspacio.setText(temporal.getNombre_espacio());
             campoEstado.setText(temporal.getEstado());
-            campoFechaSalida.setText(String.valueOf(fecha_salida));
+            //Para poner fecha en español
+            SimpleDateFormat formato = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm", new Locale("es", "ES"));
+            String fechaEspañol = formato.format(fecha_salida);
+            campoFechaSalida.setText(String.valueOf(fechaEspañol));
             campoPagar.requestFocus();
             
             String tipo_pago = campoTipoPago.getText();
@@ -461,7 +474,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
                 campoTotal.setText("5000");
             }else if(tipo_pago.equals("Hora") && tipo_vehi.equals("Carro")){
                 try {
-                    SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+                    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm", new Locale("es", "ES"));
                     Date fechaLlegada = formatter.parse(fecha_llegada);
                     long diferenciaEnMinutos = (new Date().getTime() - fechaLlegada.getTime()) / (1000 * 60);
                     if(diferenciaEnMinutos<60){
@@ -476,7 +489,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
                 }
             }else if (tipo_pago.equals("Hora") && tipo_vehi.equals("Moto")){
                 try {
-                    SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+                    SimpleDateFormat formatter = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm", new Locale("es", "ES"));
                     Date fechaLlegada = formatter.parse(fecha_llegada);
                     long diferenciaEnMinutos = (new Date().getTime() - fechaLlegada.getTime()) / (1000 * 60);
                     if(diferenciaEnMinutos<60){
@@ -500,12 +513,24 @@ public class SalidaVehiculo extends javax.swing.JFrame {
             campoPlaca.setText("");
             campoFechaLlegada.setText("");
             campoFechaSalida.setText("");
+            campoPagar.setText("");
+            campoDevuelta.setText("");
+            campoTotal.setText("");
+            campoEstado.setText("");
+            campoDuracion.setText("");
             deshabilitarCampo(campoTipoPago);
             deshabilitarCampo(campoTipoVehi);
             deshabilitarCampo(campoPlaca);
             deshabilitarCampo(campoFechaLlegada);
             deshabilitarCampo(campoFechaSalida);
+            deshabilitarCampo(campoPagar);
+            deshabilitarCampo(campoDevuelta);
+            deshabilitarCampo(campoTotal);
+            deshabilitarCampo(campoEspacio);
+            deshabilitarCampo(campoEstado);
+            deshabilitarCampo(campoDuracion);
             campoPlacaBuscar.requestFocus();
+            
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -615,6 +640,15 @@ public class SalidaVehiculo extends javax.swing.JFrame {
     private void campoDuracionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDuracionKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_campoDuracionKeyReleased
+
+    private void campoPlacaBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPlacaBuscarKeyTyped
+        char c=evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_campoPlacaBuscarKeyTyped
          
     public void camposDeshabilitados(){
         deshabilitarCampo(campoFechaLlegada);

@@ -118,6 +118,11 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         campoPlacaBuscar.setBackground(new java.awt.Color(255, 255, 102));
         campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         campoPlacaBuscar.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlacaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPlacaBuscarKeyTyped(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(255, 255, 102));
         btnAceptar.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
@@ -395,6 +400,15 @@ public class ConsultarMembresia extends javax.swing.JFrame {
         }
         calculoPago();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void campoPlacaBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPlacaBuscarKeyTyped
+        char c=evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_campoPlacaBuscarKeyTyped
     
     public void calculoPago(){
         String tipo_vehiculo = campoTipoVehiculo.getText();

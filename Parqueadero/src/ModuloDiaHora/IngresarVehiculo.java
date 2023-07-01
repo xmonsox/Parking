@@ -6,7 +6,9 @@ import Clases.Vehiculos;
 import Principal.Menu;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -27,11 +29,16 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
         this.setLocationRelativeTo(null);
         actualizarEstadoEspacios();
-        
-        campoIngreso.setText(String.valueOf(fecha) );
-        deshabilitarCampo(campoIngreso);
-        etqEstado.setText("Disponible");
-        
+        fechaEspañol();
+        etqEstado.setText("--------");
+    }
+    
+    public void fechaEspañol(){
+        Date fecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm", new Locale("es", "ES"));
+        String fechaFormateada = formato.format(fecha);
+        campoIngreso.setText(String.valueOf(fechaFormateada) );
+        deshabilitarCampo(campoIngreso);  
     }
     
     @SuppressWarnings("unchecked")
@@ -134,6 +141,11 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         campoPlaca.setBackground(new java.awt.Color(255, 255, 153));
         campoPlaca.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
         campoPlaca.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPlacaKeyTyped(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(255, 255, 102));
         btnAceptar.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 14)); // NOI18N
@@ -710,7 +722,6 @@ public class IngresarVehiculo extends javax.swing.JFrame {
             }
         }else{
             System.out.println("Diligencie todos los campos");
-            
         } 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -740,6 +751,15 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         etqEspacio.setText(String.valueOf(boton.getText()));
         etqEstado.setText("Disponible");
     }//GEN-LAST:event_marcarEspacio
+
+    private void campoPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPlacaKeyTyped
+        char c=evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_campoPlacaKeyTyped
     
     
     

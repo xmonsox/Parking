@@ -167,6 +167,11 @@ public class GenerarFactura extends javax.swing.JFrame {
         EtqTelefono5.setText("Total a pagar:");
 
         campoPlacaBuscar.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        campoPlacaBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPlacaBuscarKeyTyped(evt);
+            }
+        });
 
         campoFechaVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         campoFechaVencimiento.addActionListener(new java.awt.event.ActionListener() {
@@ -518,6 +523,16 @@ public class GenerarFactura extends javax.swing.JFrame {
             System.out.println("Diligencie todos los campos");
         } 
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void campoPlacaBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPlacaBuscarKeyTyped
+        
+        char c=evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_campoPlacaBuscarKeyTyped
     
     public void deshabilitarCampo(JTextField campo){
         JTextField referencia = new JTextField();

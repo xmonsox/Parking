@@ -4,11 +4,21 @@ package ModuloMembresia;
 import Clases.Espacios;
 import Clases.Membresias;
 import Principal.Menu;
+import com.mysql.cj.Session;
+import com.mysql.cj.protocol.Message;
 import java.awt.Color;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.util.Properties;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.event.DocumentEvent;
 
 public class RegistrarMembresia extends javax.swing.JFrame {
 
@@ -25,7 +35,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
         this.setLocationRelativeTo(null);
         Fecha();
-        
         etqEstado.setText("Disponible");
     }
 
@@ -67,6 +76,12 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         campoPlaca.setBackground(new java.awt.Color(255, 255, 102));
         campoPlaca.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         campoPlaca.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlaca.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoPlacaKeyTyped(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -359,7 +374,9 @@ public class RegistrarMembresia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+ 
+    
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         this.ventanaMenu.setVisible(true);
         dispose();
@@ -481,6 +498,15 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private void campoTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTelefonoActionPerformed
+
+    private void campoPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoPlacaKeyTyped
+        char c=evt.getKeyChar();
+        if (Character.isLowerCase(c)) {
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            evt.setKeyChar(c);
+        }
+    }//GEN-LAST:event_campoPlacaKeyTyped
 
     
 
