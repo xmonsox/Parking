@@ -85,6 +85,7 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
         campoPlaca.setBackground(new java.awt.Color(255, 255, 102));
         campoPlaca.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoPlaca.setForeground(new java.awt.Color(0, 0, 0));
+        campoPlaca.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -93,6 +94,7 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
         campoFechaInicio.setBackground(new java.awt.Color(255, 255, 102));
         campoFechaInicio.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoFechaInicio.setForeground(new java.awt.Color(0, 0, 0));
+        campoFechaInicio.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -111,6 +113,7 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
         campoTipoPago.setBackground(new java.awt.Color(255, 255, 102));
         campoTipoPago.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoTipoPago.setForeground(new java.awt.Color(0, 0, 0));
+        campoTipoPago.setEnabled(false);
         campoTipoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTipoPagoActionPerformed(evt);
@@ -118,8 +121,9 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
         });
 
         campoTipoVehiculo.setBackground(new java.awt.Color(255, 255, 102));
-        campoTipoVehiculo.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        campoTipoVehiculo.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoTipoVehiculo.setForeground(new java.awt.Color(0, 0, 0));
+        campoTipoVehiculo.setEnabled(false);
         campoTipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTipoVehiculoActionPerformed(evt);
@@ -190,7 +194,7 @@ public class ConsultarVehiculoEspecifico extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE))
+                                .addGap(0, 4, Short.MAX_VALUE))
                             .addComponent(campoPlacaBuscar))
                         .addGap(18, 18, 18))
                     .addGroup(jPanel1Layout.createSequentialGroup()

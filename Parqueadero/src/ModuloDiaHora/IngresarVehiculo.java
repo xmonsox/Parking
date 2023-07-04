@@ -30,6 +30,7 @@ public class IngresarVehiculo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         actualizarEstadoEspacios();
         fechaEspañol();
+        etqEspacio.setText("--------");
         etqEstado.setText("--------");
     }
     

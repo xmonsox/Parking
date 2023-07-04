@@ -9,12 +9,16 @@ import com.mysql.cj.protocol.Message;
 import java.awt.Color;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.util.Properties;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +28,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
 
     Menu ventanaMenu;
     Date fecha_comienzo = new Date();
+    Date fechaEspañolDate = new Date();
     Espacios  espacios_motos [] ;
     Espacios  espacios_carros [] ;
     
@@ -35,7 +40,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/imagenes/iconP.png")).getImage());
         this.setLocationRelativeTo(null);
         Fecha();
-        etqEstado.setText("Disponible");
+        camposDeshabilidatos();
     }
 
     @SuppressWarnings("unchecked")
@@ -63,10 +68,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         boxTipoVehiculo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         campoTotal = new javax.swing.JTextField();
-        etqPlaca1 = new javax.swing.JLabel();
-        etqEspacio = new javax.swing.JLabel();
-        etqPlaca2 = new javax.swing.JLabel();
-        etqEstado = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -233,23 +234,8 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         jLabel9.setText("Total  a pagar:");
 
         campoTotal.setBackground(new java.awt.Color(255, 255, 102));
-        campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        campoTotal.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         campoTotal.setForeground(new java.awt.Color(0, 0, 0));
-
-        etqPlaca1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        etqPlaca1.setForeground(new java.awt.Color(0, 0, 0));
-        etqPlaca1.setText("Espacio:");
-
-        etqEspacio.setBackground(new java.awt.Color(255, 255, 255));
-        etqEspacio.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        etqEspacio.setForeground(new java.awt.Color(0, 0, 0));
-
-        etqPlaca2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        etqPlaca2.setForeground(new java.awt.Color(0, 0, 0));
-        etqPlaca2.setText("Estado:");
-
-        etqEstado.setFont(new java.awt.Font("Dialog", 3, 24)); // NOI18N
-        etqEstado.setForeground(new java.awt.Color(0, 0, 0));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -265,9 +251,9 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                     .addGroup(contenPrincipalLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(35, Short.MAX_VALUE))
+                        .addContainerGap(36, Short.MAX_VALUE))
                     .addGroup(contenPrincipalLayout.createSequentialGroup()
                         .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -280,8 +266,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etqPlaca2)
-                            .addComponent(etqPlaca1)
                             .addComponent(jLabel6)
                             .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,11 +277,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                                         .addComponent(boxTipoMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(campoPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(boxTipoVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(contenPrincipalLayout.createSequentialGroup()
-                                .addGap(210, 210, 210)
-                                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(contenPrincipalLayout.createSequentialGroup()
                                 .addGap(159, 159, 159)
                                 .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,15 +325,7 @@ public class RegistrarMembresia extends javax.swing.JFrame {
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etqEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqPlaca1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etqEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqPlaca2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(contenPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -382,9 +353,31 @@ public class RegistrarMembresia extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
     
-    public void Fecha(){
-        campoFechaInicio.setText(String.valueOf(fecha_comienzo));
+    public void Fecha() {
+        SimpleDateFormat formato = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm");
+
+        try {
+            Date fechaDate = fecha_comienzo;  // No es necesario convertirlo a String
+            DateFormatSymbols simbolos = new DateFormatSymbols(new Locale("es"));
+            formato = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm", simbolos);
+            String fechaEspañol = formato.format(fechaDate);
+            
+            fechaEspañolDate = formato.parse(fechaEspañol);
+                    
+            campoFechaInicio.setText(fechaEspañol);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+    
+    public void camposDeshabilidatos(){
+        deshabilitarCampo(campoFechaInicio);
+        deshabilitarCampo(campoFechaVencimiento);
+        deshabilitarCampo(campoTotal);
+        
+    }
+
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         String propietario = campoPropietario.getText();
         String telefono = campoTelefono.getText();
@@ -433,38 +426,67 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private void boxTipoMembresiaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseMoved
         String tipo_membresia = boxTipoMembresia.getSelectedItem().toString();
         String tipo_vehiculo = boxTipoVehiculo.getSelectedItem().toString();
-        
+
         if(tipo_membresia.equals("Mensual") && tipo_vehiculo.equals("Moto")){
             Calendar calendario = Calendar.getInstance();
-            calendario.setTime(fecha_comienzo);
+            calendario.setTime(fechaEspañolDate);
             calendario.add(Calendar.DAY_OF_MONTH, 30);
             Date fecha_vencimiento = calendario.getTime();
-            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm");
+            String fecha_vencimiento_str = formatoFecha.format(fecha_vencimiento);
+
+            campoFechaVencimiento.setText(fecha_vencimiento_str); 
             campoTotal.setText("30000");
         }else if(tipo_membresia.equals("Quincenal") && tipo_vehiculo.equals("Moto")){
             Calendar calendario = Calendar.getInstance();
-            calendario.setTime(fecha_comienzo);
+            calendario.setTime(fechaEspañolDate);
             calendario.add(Calendar.DAY_OF_MONTH, 15);
             Date fecha_vencimiento = calendario.getTime();
-            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm");
+            String fecha_vencimiento_str = formatoFecha.format(fecha_vencimiento);
+
+            campoFechaVencimiento.setText(fecha_vencimiento_str); 
             campoTotal.setText("15000");
         }else if(tipo_membresia.equals("Mensual") && tipo_vehiculo.equals("Carro")){
             Calendar calendario = Calendar.getInstance();
-            calendario.setTime(fecha_comienzo);
+            calendario.setTime(fechaEspañolDate);
             calendario.add(Calendar.DAY_OF_MONTH, 30);
             Date fecha_vencimiento = calendario.getTime();
-            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm");
+            String fecha_vencimiento_str = formatoFecha.format(fecha_vencimiento);
+
+            campoFechaVencimiento.setText(fecha_vencimiento_str); 
             campoTotal.setText("40000");
         }else if(tipo_membresia.equals("Quincenal") && tipo_vehiculo.equals("Carro")){
             Calendar calendario = Calendar.getInstance();
-            calendario.setTime(fecha_comienzo);
+            calendario.setTime(fechaEspañolDate);
             calendario.add(Calendar.DAY_OF_MONTH, 15);
             Date fecha_vencimiento = calendario.getTime();
-            campoFechaVencimiento.setText(String.valueOf(fecha_vencimiento)); 
+
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("EEEE, dd/MM/yyyy HH:mm");
+            String fecha_vencimiento_str = formatoFecha.format(fecha_vencimiento);
+
+            campoFechaVencimiento.setText(fecha_vencimiento_str); 
             campoTotal.setText("20000");
         }
         
     }//GEN-LAST:event_boxTipoMembresiaMouseMoved
+    
+    public void deshabilitarCampo(JTextField campo){
+        JTextField referencia = new JTextField();
+        campo.setBorder( referencia.getBorder() );
+        campo.setEnabled(false);
+        campo.setBackground(Color.GRAY );
+        campo.setForeground(Color.BLACK);
+    }
+    
+    public void habilitarCampo(JTextField campo){
+        campo.setEnabled(true);
+        campo.setBackground(Color.WHITE );
+    }
     
     
     private void boxTipoMembresiaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxTipoMembresiaMouseExited
@@ -522,10 +544,6 @@ public class RegistrarMembresia extends javax.swing.JFrame {
     private javax.swing.JTextField campoTelefono;
     private javax.swing.JTextField campoTotal;
     private javax.swing.JPanel contenPrincipal;
-    private javax.swing.JLabel etqEspacio;
-    private javax.swing.JLabel etqEstado;
-    private javax.swing.JLabel etqPlaca1;
-    private javax.swing.JLabel etqPlaca2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

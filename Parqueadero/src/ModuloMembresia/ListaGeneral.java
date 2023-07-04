@@ -71,6 +71,7 @@ public class ListaGeneral extends javax.swing.JFrame {
                 "Propietario", "Telefono", "Tipo Vehiculo", "Tipo Membresia", "Placa", "Fecha Inicio", "Fecha Vencimiento", "Total"
             }
         ));
+        tabla.setEnabled(false);
         jScrollPane1.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

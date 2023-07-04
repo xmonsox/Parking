@@ -82,6 +82,7 @@ public class ConsultarVehiculo extends javax.swing.JFrame {
                 "Placa", "Tipo Vehiculo", "Tipo Pago", "Fecha Ingreso", "Espacio", "Estado"
             }
         ));
+        tabla.setEnabled(false);
         jScrollPane2.setViewportView(tabla);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

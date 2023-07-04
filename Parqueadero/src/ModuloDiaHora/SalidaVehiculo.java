@@ -99,6 +99,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         EtqTelefono5.setText("Devuelta:");
 
         campoFechaLlegada.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoFechaLlegada.setEnabled(false);
 
         campoPagar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         campoPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,8 +136,10 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         });
 
         campoFechaSalida.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoFechaSalida.setEnabled(false);
 
         campoTipoPago.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoTipoPago.setEnabled(false);
 
         btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,12 +159,14 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         EtqTelefono2.setText("Tipo Pago:");
 
         campoTipoVehi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoTipoVehi.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Placa:");
 
         campoDevuelta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoDevuelta.setEnabled(false);
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -192,6 +197,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         });
 
         campoPlaca.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoPlaca.setEnabled(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -217,12 +223,19 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         EtqTelefono4.setText("Pagar:");
 
         campoTotal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoTotal.setEnabled(false);
+        campoTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTotalActionPerformed(evt);
+            }
+        });
 
         EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         EtqTelefono6.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono6.setText("Espacio:");
 
         campoEspacio.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEspacio.setEnabled(false);
         campoEspacio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoEspacioActionPerformed(evt);
@@ -239,12 +252,14 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         EtqTelefono7.setText("Estado:");
 
         campoEstado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoEstado.setEnabled(false);
 
         EtqTelefono8.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 18)); // NOI18N
         EtqTelefono8.setForeground(new java.awt.Color(0, 0, 0));
         EtqTelefono8.setText("Duracion:");
 
         campoDuracion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        campoDuracion.setEnabled(false);
         campoDuracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoDuracionActionPerformed(evt);
@@ -649,6 +664,10 @@ public class SalidaVehiculo extends javax.swing.JFrame {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_campoPlacaBuscarKeyTyped
+
+    private void campoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoTotalActionPerformed
          
     public void camposDeshabilitados(){
         deshabilitarCampo(campoFechaLlegada);

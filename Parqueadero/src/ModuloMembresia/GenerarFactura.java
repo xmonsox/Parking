@@ -88,6 +88,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoPlaca.setBackground(new java.awt.Color(255, 255, 153));
         campoPlaca.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoPlaca.setEnabled(false);
 
         EtqTelefono.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono.setForeground(new java.awt.Color(0, 0, 0));
@@ -99,9 +100,11 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoTipoVehiculo.setBackground(new java.awt.Color(255, 255, 153));
         campoTipoVehiculo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoTipoVehiculo.setEnabled(false);
 
         campoTotalPagar.setBackground(new java.awt.Color(255, 255, 153));
         campoTotalPagar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoTotalPagar.setEnabled(false);
         campoTotalPagar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoTotalPagarKeyReleased(evt);
@@ -136,6 +139,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoTipoMembresia.setBackground(new java.awt.Color(255, 255, 153));
         campoTipoMembresia.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoTipoMembresia.setEnabled(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 102));
 
@@ -162,6 +166,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoFechaInicio.setBackground(new java.awt.Color(255, 255, 153));
         campoFechaInicio.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoFechaInicio.setEnabled(false);
 
         EtqNombre.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 36)); // NOI18N
         EtqNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -183,6 +188,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoFechaVencimiento.setBackground(new java.awt.Color(255, 255, 153));
         campoFechaVencimiento.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoFechaVencimiento.setEnabled(false);
         campoFechaVencimiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoFechaVencimientoActionPerformed(evt);
@@ -204,6 +210,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoTelefono.setBackground(new java.awt.Color(255, 255, 153));
         campoTelefono.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoTelefono.setEnabled(false);
 
         EtqTelefono6.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono6.setForeground(new java.awt.Color(0, 0, 0));
@@ -211,6 +218,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoDevuelta.setBackground(new java.awt.Color(255, 255, 153));
         campoDevuelta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoDevuelta.setEnabled(false);
 
         EtqTelefono7.setFont(new java.awt.Font("Source Sans Pro SemiBold", 3, 24)); // NOI18N
         EtqTelefono7.setForeground(new java.awt.Color(0, 0, 0));
@@ -218,6 +226,11 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoCuantoPago.setBackground(new java.awt.Color(255, 255, 153));
         campoCuantoPago.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoCuantoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoCuantoPagoActionPerformed(evt);
+            }
+        });
         campoCuantoPago.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 campoCuantoPagoKeyReleased(evt);
@@ -230,6 +243,7 @@ public class GenerarFactura extends javax.swing.JFrame {
 
         campoPropietario.setBackground(new java.awt.Color(255, 255, 153));
         campoPropietario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        campoPropietario.setEnabled(false);
 
         btnBuscar.setBackground(new java.awt.Color(0, 0, 0));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -265,7 +279,7 @@ public class GenerarFactura extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(86, 86, 86)
                                 .addComponent(EtqNombre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                                 .addComponent(campoPlacaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -283,18 +297,18 @@ public class GenerarFactura extends javax.swing.JFrame {
                                     .addComponent(EtqTelefono7)
                                     .addComponent(EtqNombre1))
                                 .addGap(28, 28, 28)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(campoCuantoPago, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                                    .addComponent(campoTotalPagar, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoFechaVencimiento, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoPlaca, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTipoMembresia, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTipoVehiculo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoPropietario, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoDevuelta))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(campoTipoMembresia, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE)
+                                    .addComponent(campoTipoVehiculo)
+                                    .addComponent(campoPropietario)
+                                    .addComponent(campoTelefono)
+                                    .addComponent(campoDevuelta, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(campoFechaVencimiento)
+                                    .addComponent(campoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(campoTotalPagar)
+                                    .addComponent(campoCuantoPago))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -417,6 +431,7 @@ public class GenerarFactura extends javax.swing.JFrame {
             campoFechaInicio.setText(temporal.getFecha_inicio());
             campoFechaVencimiento.setText(temporal.getFecha_vencimiento());
             campoTotalPagar.setText(String.valueOf(temporal.getTotal()));
+            campoCuantoPago.requestFocus();
         }else{
             System.out.println("NO SE ENCONTRO LA PLACA");
             campoPropietario.setText("");
@@ -445,10 +460,17 @@ public class GenerarFactura extends javax.swing.JFrame {
         String pago = campoCuantoPago.getText();
         String total = campoTotalPagar.getText();
 
-        if(Integer.parseInt(pago)<Integer.parseInt(total)){
-            System.out.println("ERROR, PAGO INSUFICENTE");
-        }else{
-            System.out.println("PAGO EXITOSO");
+        if (pago.isEmpty()) { // Verificar si el campo de pago está vacío
+            campoDevuelta.setText(""); // Establecer el valor del campo de devuelta como vacío
+        } else {
+            if (Integer.parseInt(pago) < Integer.parseInt(total)) {
+                System.out.println("ERROR, PAGO INSUFICIENTE");
+            } else {
+                System.out.println("PAGO EXITOSO");
+            }
+
+            int devuelta = Integer.parseInt(pago) - Integer.parseInt(total);
+            campoDevuelta.setText(String.valueOf(devuelta));
         }
 
         int devuelta = Integer.parseInt(pago)-Integer.parseInt(total);
@@ -546,6 +568,10 @@ public class GenerarFactura extends javax.swing.JFrame {
             evt.setKeyChar(c);
         }
     }//GEN-LAST:event_campoPlacaBuscarKeyTyped
+
+    private void campoCuantoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCuantoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoCuantoPagoActionPerformed
     
     public void deshabilitarCampo(JTextField campo){
         JTextField referencia = new JTextField();
